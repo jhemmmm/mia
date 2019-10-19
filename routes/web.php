@@ -22,3 +22,9 @@ Route::get('/manage', 'UserController@manageTable')->name('manageTable');
 //api
 Route::post('/api/getAvailableTable', 'BookController@availableTable')->name('availableTable');
 Route::post('/api/saveBook', 'BookController@saveBook')->name('saveBook');
+Route::post('/api/getBookByID', 'BookController@getBookByID')->name('getBookByID');
+Route::post('/api/saveOrder', 'BookController@saveOrder')->name('saveOrder');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
+  Route::get('/', 'AdminController@index');
+});

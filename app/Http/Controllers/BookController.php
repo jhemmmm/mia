@@ -12,6 +12,57 @@ use Auth;
 
 class BookController extends Controller
 {
+
+    public function getBookByID(Request $request)
+    {
+      $book_id = $request->id;
+      $books = Book::with(['category'])->where('id', $book_id )->first();
+
+      return response()->json([
+        'status' => 'success',
+        'result' => $books,
+      ]);
+    }
+
+    public function saveOrder(Request $request)
+    {
+      $book_id = $request->id;
+      $time = strtotime($request->time);
+      $book = Book::where('id', $book_id )->first();
+      if(!$book)
+        return response()->json([
+          'status' => 'error',
+          'message' => 'Unable to find the order!',
+        ]);
+
+      $book->time = $time;
+      $book->save();
+
+      return response()->json([
+        'status' => 'success',
+        'message' => 'Order time has been updated!',
+      ]);
+    }
+
+    public function cancelOrder(Request $request)
+    {
+      $book_id = $request->id;
+      $book = Book::where('id', $book_id )->first();
+      if(!$book)
+        return response()->json([
+          'status' => 'error',
+          'message' => 'Unable to find the order!',
+        ]);
+
+      $book->status = 5;
+      $book->save();
+
+      return response()->json([
+        'status' => 'warning',
+        'message' => 'Your order has been canceled',
+      ]);
+    }
+
     public function availableTable(Request $request)
     {
       if(!Auth::id())

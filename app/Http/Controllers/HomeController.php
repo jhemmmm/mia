@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Book;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,9 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $books = null;
+        if(Auth::id())
+          $books = Book::with(['category'])->where('user_id', Auth::id())->get();
+          
         $categories = Category::get();
+
         return view('welcome', [
           'categories' => $categories,
+          'books' => $books,
         ]);
     }
 }

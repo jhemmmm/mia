@@ -5,9 +5,10 @@
   <div class="header-container container">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <h1 class="title">Annyeong Samgyupsal <br>
+        <h1>Annyeong Samgyupsal <br>
           Reservation Online System
         </h1>
+        <div class="hr-border"></div>
         <p>Don't waste your time, reserve your table online!. One of the best online reservation system</p>
       </div>
     </div>
@@ -45,6 +46,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12 text-center">
         <h1 class="title">Our Menu</h1>
+        <div class="hr-border"></div>
       </div>
       <!-- Start Total People Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,11 +101,11 @@
                 <div class="form-group row">
                   <label for="date-input" class="col-12 col-form-label">Date & Time:</label>
                   <div class="col-12">
-                    <input class="form-control" type="datetime-local" value="" id="date-input">
+                    <input class="form-control" type="datetime-local" value="" id="date-input" max="2021-01-01 00:00:00" min="2018-01-01 00:00:00">
                   </div>
                 </div>
 
-                <div id="selectPackageBody" class="modal-body">
+                <div id="selectPackageBody">
                   <div class="row">
                     @foreach($categories as $category)
                     <div class="selectPackage col-6 col-md-4 text-center">
@@ -125,15 +127,136 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                <button id="submitSelectTable" type="button" class="btn btn-primary">CONTINUE</button>
+                <button id="submitSelectTable" type="button" class="btn btn-primary btn-lg btn-block">CONTINUE</button>
               </div>
             </div>
           </div>
       </div>
 
+      <!--- Manage User Table Modal !--->
+      <div class="modal fade" id="manageTableModal" tabindex="-1" role="dialog" aria-labelledby="manageTableModalLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="manageTableModalLabel">MANAGE MY TABLE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+              @if($books)
+              @foreach($books as $book)
+              <div data-toggle="modal" data-target="#manageOrderedModal" data-id="{{ $book->id }}" id="manageTable" class="u-table row">
+                <div class="col-4">
+                  <i class="fas fa-arrow-right"></i>
+                   Order Number: #{{ $book->id }}
+                </div>
+                <div class="col-4">
+                  {{ $book->time  }}
+                </div>
+                <div class="col-4">
+                  <p class="{{ (\Carbon\Carbon::now()->timestamp <= $book->time->timestamp) ? 'text-success' : 'text-secondary' }}">
+                    {{ (\Carbon\Carbon::now()->timestamp <= $book->time->timestamp) ? 'On Going' : 'Completed' }}
+                  </p>
+                </div>
+              </div>
+              @endforeach
+              @endif
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">CLOSE</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!--- End Manage User Table Modal !--->
+
+      <!--- Manage User Ordered Modal !--->
+      <div class="modal fade" id="manageOrderedModal" tabindex="-1" role="dialog" aria-labelledby="manageOrderedModalLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="manageOrderedModalLabel">USER ORDER</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-6">
+                    <div id="table-input"></div>
+                    <div class="text-left">
+                      <small><div id="total-person-input"></div></small>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div id="category-input"></div>
+                  </div>
+                  <div class="col-6">
+                    Total Price: <div id="total-price-input"></div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Date & Time:</label>
+                        <input class="form-control" type="datetime-local" value="2019-10-19T10:10:00" id="date-input-order">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer" style="display: block !important">
+                <button id="save-order" data-id="" type="button" class="btn btn-primary btn-block">SAVE ORDER</button>
+                <button id="cancel-order" data-id=""  type="button" class="btn btn-danger btn-block ml-0">CANCEL ORDER</button>
+                <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!--- End Manage User Ordered Modal !--->
       <script>
       $(document).ready(function() {
+        $("#save-order").click(function(){
+          var curThis = $(this);
+          $.post("/api/saveOrder",{
+            id: curThis.data('id'),
+            time: $("#date-input-order").val(),
+          }).done(function( data ){
+            $.notify(data.message, data.status);
+          });
+        });
+
+        $("#cancel-order").click(function(){
+          var curThis = $(this);
+          $.post("/api/saveOrder",{
+            id: curThis.data('id'),
+          }).done(function( data ){
+            $.notify(data.message, data.status);
+          });
+        });
+
+        $("div[id=manageTable]").click(function(){
+            var curThis = $(this);
+            $("#save-order").data("id", curThis.data('id'));
+            $("#cancel-order").data("id", curThis.data('id'));
+
+            $.post( "/api/getBookByID", {
+              id : curThis.data('id'),
+            }).done(function( data ) {
+              $("#category-input").html("");
+              var total_price = 0;
+              if(data.status == "success"){
+                $("#manageOrderedModalLabel").html('Order: #' + data.result.id);
+                $("#table-input").html("Table Number: #" + data.result.table_id);
+                $("#total-person-input").html("Total Person: " + data.result.total_person);
+                $.each(data.result.category, function(i, item){
+                  total_price = total_price + item.price;
+                  $("#category-input").append(item.name + '<div class="text-left"><small>₱' + item.price + '</small></div>');
+                });
+                var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+                var now = new Date(data.result.time);
+                var localISOTime = (new Date(now - tzoffset)).toISOString().slice(0, -1);
+                $("#date-input-order").val(localISOTime);
+                $("#total-price-input").html("₱" + total_price);
+                console.log(total_price);
+              }
+            });
+        });
+
           var totalPerson = 0;
           $("#submitTotalPerson").click(function(){
               totalPerson = $('#totalPersonValue').val();
@@ -145,9 +268,10 @@
                   window.location.href = "/login";
                   return;
                 }
+                $('#selectTableAvailable').empty();
                 if(data.status == "success"){
                   $.each(data.result, function (i, item) {
-                      $('#selectTableAvailable').empty().append($('<option>', {
+                      $('#selectTableAvailable').append($('<option>', {
                           value: item,
                           text : "Table #" + item
                       }));
@@ -214,6 +338,7 @@
 
       <div class="col-md-12 text-center m-4" style="background: #dbdbdb;">
         <h1 class="title">Our Store</h1>
+        <div class="hr-border"></div>
         <div class="gallery">
           <div class="mb-3 pics animation all 2">
             <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/71389950_682058208950686_4382768629532327936_n.jpg?_nc_cat=101&_nc_oc=AQmKIaGKRE9l_wjI8iVbc8mOswJQ6tAxXUiJevVet9r2tU6gd9zzcBmSMv7Leiq43V8&_nc_ht=scontent-sin2-2.xx&oh=493d0826857edf02f9b9872dac544c69&oe=5E1E1088" alt="Card image cap">
@@ -237,12 +362,10 @@
       </div>
     </div>
 </div>
+
 <script>
 $(".navbar").removeClass("bg-white");
 
-</script>
-
-<script>
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if (scroll >= 100) {

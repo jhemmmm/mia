@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use DB;
 
 class CreateBooksTable extends Migration
 {
@@ -19,8 +20,11 @@ class CreateBooksTable extends Migration
             $table->integer('table_id');
             $table->integer('total_person')->default(0);
             $table->dateTime('time');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
+
+        DB::update("ALTER TABLE books AUTO_INCREMENT = 10000;");
     }
 
     /**
