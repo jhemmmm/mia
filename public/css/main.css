@@ -106,6 +106,16 @@ body {
     width: 100%;
 }
 
+.selectPerhead{
+  border: 1px solid #c4c4c4;
+  background: #cfcfcf;
+}
+
+.selectPerhead.active{
+  border: 1px solid #c4c4c4;
+  background: #95ffb1;
+}
+
 .selectPackage {
     border: 1px solid #c4c4c4;
     background: #cfcfcf;
@@ -226,4 +236,3 @@ body {
     overflow: scroll;
     overflow-x: hidden;
 }
-

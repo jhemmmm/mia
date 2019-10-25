@@ -74,6 +74,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                          <div class="col-6 text-center">
+                            <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> Per Head</label>
+                          </div>
+                          <div class="col-6 text-center">
+                            <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> Per Package</label>
+                          </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
@@ -108,6 +116,22 @@
                         </div>
 
                         <div id="selectPackageBody">
+                          <div class="row">
+                            <div class="selectPerhead col-6 col-md-4 text-center">
+                              <h1>Test</h1>
+                              <label>299</label>
+                              <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="dwn">-</button>
+                                  </span>
+                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="up">+</button>
+                                  </span>
+                              </div>
+                            </div>
+                          </div>
+
                             <div class="row">
                                 @foreach($categories as $category)
                                 <div class="selectPackage col-6 col-md-4 text-center">
@@ -233,35 +257,35 @@
                                 <div class="form-group col-12">
                                     <label>Current password</label>
                                     <input id="setting-cur_password" type="password" class="form-control" name="cur_password" value="" required>
-                                </div> 
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Name</label>
                                     <input id="setting-name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
-                                </div>  
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Email</label>
                                     <input id="setting-email" type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
-                                </div>  
+                                </div>
                                 <div class="form-group col-12">
                                     <label>New password</label>
                                     <input id="setting-password" type="password" class="form-control" name="password" value="">
-                                </div> 
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Confirm new password</label>
                                     <input id="setting-confirm-password" type="password" class="form-control" name="password_confirmation" value="">
-                                </div>  
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Address</label>
                                     <input id="setting-address" type="text" class="form-control" name="address" value="{{ Auth::user()->address }}" required>
-                                </div>  
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Optional Address</label>
                                     <input id="setting-optional_address" type="text" class="form-control" name="optional_address" value="{{ Auth::user()->optional_address }}">
-                                </div>  
+                                </div>
                                 <div class="form-group col-12">
                                     <label>Mobile</label>
                                     <input id="setting-mobile" type="text" class="form-control" name="mobile" value="{{ Auth::user()->mobile }}" required>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer" style="display: block !important">
@@ -344,11 +368,14 @@
                 });
 
                 var totalPerson = 0;
+                var typeOrderValue = 0;
                 $("#submitTotalPerson").click(function () {
                     totalPerson = $('#totalPersonValue').val();
+                    typeOrderValue = $('#typeOrderValue').val();
                     //add loading
                     $.post("/api/getAvailableTable", {
                         totalPerson: totalPerson,
+                        typeOrderValue: typeOrderValue,
                     }).done(function (data) {
                         if (data.status == "login") {
                             window.location.href = "/login";

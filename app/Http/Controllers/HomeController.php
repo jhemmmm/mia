@@ -29,10 +29,15 @@ class HomeController extends Controller
         $books = null;
         if(Auth::id())
           $books = Book::with(['category'])->where('user_id', Auth::id())->get();
-          
+
         $categories = Category::get();
 
+        $per_head = Category::where('type', 1)->get();
+        $per_pack = Category::where('type', 0)->get();
+
         return view('welcome', [
+          'per_head' => $per_head,
+          'per_pack' => $per_pack,
           'categories' => $categories,
           'books' => $books,
         ]);

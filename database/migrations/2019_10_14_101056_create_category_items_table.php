@@ -17,6 +17,7 @@ class CreateCategoryItemsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('category_id');
             $table->integer('item_id');
+            $table->integer('item_value');
             $table->timestamps();
         });
     }
