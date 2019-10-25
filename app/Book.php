@@ -11,4 +11,8 @@ class Book extends Model
     public function category(){
       return $this->belongsToMany(Category::class, 'book_categories')->withPivot('category_quantity');
     }
+
+    public function user(){
+      return $this->belongsTo(User::class);
+    }
 }

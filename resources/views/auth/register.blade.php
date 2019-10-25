@@ -87,8 +87,8 @@
                             <label for="mobile" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
 
                             <div class="col-md-6">
-                                <input type="tel" name="mobile" value="{{ old('mobile') }}" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required placeholder="912-3456-789">
-                                <small>Format: 912-3456-789</small>
+                                <input type="tel" name="mobile" value="{{ old('mobile') }}" class="form-control" required placeholder="09123456789">
+                                <small>Format: 09123456789</small>
 
                                 @error('mobile')
                                     <span class="invalid-feedback" role="alert">

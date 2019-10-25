@@ -68,8 +68,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a data-toggle="modal" data-target="#manageTableModal" class="dropdown-item" href="/manage"><i class="fas fa-tasks"></i> Manage My Table</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Settings</a>
+                                    @if(!in_array(Auth::id(), config('app.admin_id')))
+                                    <a data-toggle="modal" data-target="#manageTableModal" class="dropdown-item" href="#"><i class="fas fa-tasks"></i> Manage My Table</a>
+                                    <a data-toggle="modal" data-target="#userSettingModal" class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Settings</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
