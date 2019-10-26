@@ -106,12 +106,12 @@ body {
     width: 100%;
 }
 
-.selectPerhead{
+#selectPerhead{
   border: 1px solid #c4c4c4;
   background: #cfcfcf;
 }
 
-.selectPerhead.active{
+#selectPerhead.active{
   border: 1px solid #c4c4c4;
   background: #95ffb1;
 }

@@ -116,8 +116,34 @@
                         </div>
 
                         <div id="selectPackageBody">
-                          <div class="row">
-                            <div class="selectPerhead col-6 col-md-4 text-center">
+                          <div id="displayPerHead" class="row d-none">
+                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
+                              <h1>Test</h1>
+                              <label>299</label>
+                              <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="dwn">-</button>
+                                  </span>
+                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="up">+</button>
+                                  </span>
+                              </div>
+                            </div>
+                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
+                              <h1>Test</h1>
+                              <label>299</label>
+                              <div class="input-group number-spinner">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="dwn">-</button>
+                                  </span>
+                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-primary" data-dir="up">+</button>
+                                  </span>
+                              </div>
+                            </div>
+                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
                               <h1>Test</h1>
                               <label>299</label>
                               <div class="input-group number-spinner">
@@ -132,7 +158,7 @@
                             </div>
                           </div>
 
-                            <div class="row">
+                            <div id="displayPackage" class="row d-none">
                                 @foreach($categories as $category)
                                 <div class="selectPackage col-6 col-md-4 text-center">
                                     <h1>{{ $category->name }}</h1>
@@ -299,6 +325,17 @@
         @endguest
         <script>
             $(document).ready(function () {
+                $('div[id=selectPerhead]').click(function(){
+                  //disable class
+                  $('div[id=selectPerhead]').each(function (index, value) {
+                      var curThis = $(this);
+                      curThis.removeClass("active");
+                  });
+
+                  var curThis = $(this);
+                  curThis.addClass("active");
+
+                });
 
                  $('#edit-user').click(function(event){
                     $.post("/api/editNormalUser", {
@@ -371,7 +408,7 @@
                 var typeOrderValue = 0;
                 $("#submitTotalPerson").click(function () {
                     totalPerson = $('#totalPersonValue').val();
-                    typeOrderValue = $('#typeOrderValue').val();
+                    typeOrderValue = $("input[name='type']:checked").val();
                     //add loading
                     $.post("/api/getAvailableTable", {
                         totalPerson: totalPerson,
@@ -396,7 +433,16 @@
                             }));
                         }
                         $('#exampleModal').modal('hide');
-                        $('#selectTableModal').modal('show')
+                        $('#selectTableModal').modal('show');
+                        if(typeOrderValue == 1){
+                          $("#selectPerhead").click();
+                          $('#displayPerHead').removeClass("d-none");
+                          $('#displayPackage').addClass("d-none");
+                        }else{
+                          $('#displayPerHead').addClass("d-none");
+                          $('#displayPackage').removeClass("d-none");
+                        }
+                        console.log(typeOrderValue);
                     });
                 });
 
