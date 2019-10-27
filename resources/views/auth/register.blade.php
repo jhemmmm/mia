@@ -26,10 +26,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('lastname') is-invalid @enderror" name="name" value="{{ old('lastname') }}" required autocomplete="lastname" placeholder="Last Name" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" placeholder="Last Name" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
