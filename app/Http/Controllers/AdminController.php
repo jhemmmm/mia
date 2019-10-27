@@ -41,13 +41,35 @@ class AdminController extends Controller
 	  $tables = Table::get();
 
 	  //Admin reservation
-	  $books = Book::with(['user', 'category'])->orderBy('time', 'desc')->get();
-	  $canceled_books = Book::with(['user', 'category'])->where('status', 5)->orderBy('time', 'desc')->get();
+	  $books = Book::with(['user', 'category'])->orderBy('time', 'asc')->get();
+	  $canceled_books = Book::with(['user', 'category'])->where('status', 5)->orderBy('time', 'asc')->get();
 
 	  //Admin user
 	  $users = User::get();
 
+	  //Sales report
+	  $sales = Book::with(['category' => function($q){
+		  $q->with(['item']);
+	  }])->where('status', 1);
+
+	  $sort = $request->sort ?? 0;
+	  switch ((int)$sort)
+	  {
+		case 1:
+			$sales = $sales->whereDate('created_at', Carbon::today()->subDays(7))->get();
+			break;
+		case 2:
+			$sales = $sales->whereDate('created_at', Carbon::today()->subDays(30))->get();
+			break;
+		default:
+			$sales = $sales->whereDate('created_at', Carbon::today())->get();
+			break;
+	  }
+
 	  return view('admin.index', [
+		'admin_sale' => [
+			'sales' => $sales,
+		],
 		'dashboard' => [
 		  'total_reservation' => $total_reservation,
 		  'total_registration' => $total_registration,
@@ -147,6 +169,24 @@ class AdminController extends Controller
 		return redirect()->to(url()->previous() . '#list-user');
 	}
 
+	public function deleteReservation(Request $request)
+	{
+		$book = Book::find($request->id);
+		if(!$book)
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Unable to find the reservation',
+			]);
+		
+		$book->delete();
+
+		return response()->json([
+			'status' => 'success',
+			'messaged' => 'Reservation has been deleted successfully',
+		]);
+	}
+
+
 	public function deleteUser(Request $request)
 	{
 		$user = User::find($request->id);
@@ -167,13 +207,16 @@ class AdminController extends Controller
 	public function addTable(Request $request)
 	{
 		$this->validate($request, [
+			'name' => 'required|string|min:2',
 			'min_val' => 'required|numeric|min:1',
 			'max_val' => 'required|numeric|gt:min_val',
 		]);
 
 		$table = new Table;
+		$table->name = $request->name;
 		$table->min = $request->min_val;
 		$table->max = $request->max_val;
+		$table->status = $request->status;
 		$table->save();
 
 		return redirect()->to(url()->previous() . '#list-table');
@@ -182,13 +225,16 @@ class AdminController extends Controller
 	public function editTable(Request $request)
 	{
 		$this->validate($request, [
+			'name' => 'required|string|min:2',
 			'min_val' => 'required|numeric|min:1',
 			'max_val' => 'required|numeric|gt:min_val',
 		]);
 
 		$table = Table::find($request->id);
+		$table->name = $request->name;
 		$table->min = $request->min_val;
 		$table->max = $request->max_val;
+		$table->status = $request->status;
 		$table->save();
 
 		return redirect()->to(url()->previous() . '#list-table');
@@ -283,6 +329,7 @@ class AdminController extends Controller
 		$category->name = $request->name;
 		$category->description = $request->description;
 		$category->price = $request->price;
+		$category->type = $request->type;
 		$category->image = 'images/'.$input['imagename'];
 		$category->save();
 
@@ -312,6 +359,7 @@ class AdminController extends Controller
 	  $category->name = $request->name;
 	  $category->price = $request->price;
 	  $category->description = $request->description;
+	  $category->type = $request->type;
 	  $image = $request->file('image');
 	  if($image){
 		$input['imagename'] = time().'.'.$image->getClientOriginalExtension();

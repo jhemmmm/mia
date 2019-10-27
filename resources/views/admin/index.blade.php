@@ -44,11 +44,12 @@
 											<th scope="col">Ordered</th>
                                             <th scope="col">Time</th>
 											<th scope="col">Status</th>
+                                            <th scope="col">Tools</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 										@foreach($admin_book['canceled_books'] as $book)
-                                        <tr>
+                                        <tr id="reservation-t-{{ $book->id }}">
                                             <th scope="row">#{{ $book->id }}</th>
                                             <td>
 												Name: <b>{{ $book->user->name }} </b></br>
@@ -62,6 +63,7 @@
 											</td>
                                             <td>{{ $book->time->isoFormat('LLLL') }}</td>
 											<td class="text-danger">Canceled</td>
+                                            <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
 										</tr>
 										@endforeach
 									</tbody>
@@ -82,11 +84,12 @@
 											<th scope="col">Ordered</th>
                                             <th scope="col">Time</th>
 											<th scope="col">Status</th>
+                                            <th scope="col">Tools</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 										@foreach($admin_book['books'] as $book)
-                                        <tr>
+                                        <tr id="reservation-t-{{ $book->id }}">
                                             <th scope="row">#{{ $book->id }}</th>
                                             <td>
 												Name: <b>{{ $book->user->name }} </b></br>
@@ -100,6 +103,7 @@
 											</td>
                                             <td>{{ $book->time->isoFormat('LLLL') }}</td>
 											<td class="{{ Helper::getStatus($book->time, $book->status)['status'] }}">{{ Helper::getStatus($book->time, $book->status)['message'] }}</td>
+                                            <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
 										</tr>
 										@endforeach
 									</tbody>
@@ -150,6 +154,51 @@
                                     <div class="bg-info text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_table'] }}</h1>
                                         <small>Total Table</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 py-2">
+                                    <div class="bg-light p-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="text-left">
+                                                    <h5>Sales Report</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group text-right">
+                                                    <select class="form-control" name="sort-sale">
+                                                        <option value="0">Totay</option>
+                                                        <option value="1">Last Week</option>
+                                                        <option value="2">Last Month</option>
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                            <div class="col-12"><hr></div>
+                                            <?php $sale_total = 0; ?>
+                                            @foreach($admin_sale['sales'] as $sale)
+                                            <div class="col-12"> 
+                                                <div class="float-left"><b>Reservation #{{ $sale->id }}</b></div>
+                                                <div class="text-right">
+                                                    <small>
+                                                    <br>
+                                                    @foreach($sale->category as $category)
+                                                        Name: {{ $category->name }} <br>
+                                                        Price: ₱{{ $category->price }} <br>
+                                                        Qty: {{ $category->pivot->category_quantity }}
+                                                        <?php $sale_total += $category->price * $category->pivot->category_quantity ?>
+                                                    @endforeach
+                                                    </small>
+                                                </div>
+                                                <div class="px-5"><hr></div>
+                                            </div>
+                                            @endforeach
+                                            <div class="col-6 text-left">
+                                                <h2>Total Received</h2>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <h2>₱{{ $sale_total }} </h2>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -204,9 +253,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-6">
+                                                        <label>Type</label>
+                                                        <select class="form-control" name="type">
+                                                            <option value="0" selected>Per Pack</option>
+                                                            <option value="1">Per Head</option>
+                                                        </select>
+                                                        </br>
                                                         <label>Image</label>
-                                                        {!! Form::file('image', array('class' => 'image form-control'))
-                                                        !!}
+                                                        {!! Form::file('image', array('class' => 'image form-control'))!!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,7 +331,6 @@
                                                                             <div class="form-check row">
                                                                                 <div class="col-6">
                                                                                     <?php 
-                                                                                        
                                                                                         $is_checked = false;
                                                                                         $value = 0;
                                                                                         foreach($category->item as $c_item){
@@ -385,7 +438,7 @@
                                         <tr id="item-t-{{ $item->id }}">
                                             <th scope="row">{{ $item->id }}</th>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->total }}</td>
+                                            <td>{{ $item->total . (($item->type == 1)? 'g' : '') }}</td>
                                             <td>
 												<a data-toggle="modal" data-target="#editItem-{{ $item->id }}" href="#"><i class="fas fa-edit"></i></a>
 												<!--- Manage User Ordered Modal !--->
@@ -452,6 +505,10 @@
                                             {!! Form::open(array('route' => 'addTable', 'enctype' => 'multipart/form-data')) !!}
                                             <div class="modal-body">
                                                 <div class="row">
+                                                    <div class="form-group col-12">
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" name="name" value="" required>
+                                                    </div>  
                                                     <div class="form-group col-6">
                                                         <label>Min Person</label>
                                                         <input type="number" class="form-control" name="min_val" value="0" required>
@@ -459,7 +516,14 @@
 													<div class="form-group col-6">
                                                         <label>Max Person</label>
                                                         <input type="number" class="form-control" name="max_val" value="0" required>
-                                                    </div>                                   
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <label>Status</label>
+                                                        <select class="form-control" name="status">
+                                                            <option value="1" selected>Enable</option>
+                                                            <option value="0">Disable</option>
+                                                        </select>
+                                                    </div>                                     
                                                 </div>
                                             </div>
                                             <div class="modal-footer" style="display: block !important">
@@ -478,17 +542,27 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Name</th>                               
                                             <th scope="col">Min Person</th>
 											<th scope="col">Max Person</th>
+                                            <th scope="col">Status</th>
                                             <th scope="col">Tools</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 										@foreach($admin_table['tables'] as $table)									
                                         <tr id="table-t-{{ $table->id }}">
-                                            <th scope="row">Table #{{ $table->id }}</th>
+                                            <th scope="row">Table ID #{{ $table->id }}</th>
+                                            <td>{{ $table->name }}</td>
                                             <td>{{ $table->min }}</td>
                                             <td>{{ $table->max }}</td>
+                                            <td>
+                                                @if($table->status == 1)
+                                                    <div class="text-success">Enabled</div>
+                                                @else
+                                                    <div class="text-danger">Disabled</div>
+                                                @endif
+                                            </td>
                                             <td>
 												<a data-toggle="modal" data-target="#editTable-{{ $table->id }}" href="#"><i class="fas fa-edit"></i></a>
 												<!--- Manage User Ordered Modal !--->
@@ -501,16 +575,27 @@
 															</div>
 															{!! Form::open(array('route' => 'editTable', 'enctype' => 'multipart/form-data')) !!}
 															<input type="hidden" name="id" value="{{ $table->id }}"/>
-															<div class="modal-body">
+															<div class="modal-body">        
 																<div class="row">
-																	<div class="form-group col-6">
-																	<label>Min Person</label>
-																	<input type="number" class="form-control" name="min_val" value="{{ $table->min }}" required>
-																</div>  
-																<div class="form-group col-6">
-																	<label>Max Person</label>
-																	<input type="number" class="form-control" name="max_val" value="{{ $table->max }}" required>
-																</div>
+                                                                    <div class="form-group col-12">
+                                                                        <label>Name</label>
+                                                                        <input type="text" class="form-control" name="name" value="{{ $table->name }}" required>
+                                                                    </div>          
+                                                                    <div class="form-group col-6">
+                                                                        <label>Min Person</label>
+                                                                        <input type="number" class="form-control" name="min_val" value="{{ $table->min }}" required>
+                                                                    </div>  
+                                                                    <div class="form-group col-6">
+                                                                        <label>Max Person</label>
+                                                                        <input type="number" class="form-control" name="max_val" value="{{ $table->max }}" required>
+                                                                    </div>
+                                                                    <div class="form-group col-12">
+                                                                        <label>Status</label>
+                                                                        <select class="form-control" name="status">
+                                                                            <option value="1" {{ ($table->status == 1) ? 'selected' : '' }}</option>Enable</option>
+                                                                            <option value="0" {{ ($table->status == 0) ? 'selected' : '' }}</option>Disable</option>
+                                                                        </select>
+                                                                    </div>     
 																</div>
 															</div>
 															<div class="modal-footer" style="display: block !important">
@@ -626,6 +711,18 @@
 <script>
 $(function(){
     $(document).ready(function () {
+        $("a[id='reservation-delete']").click(function () {
+            var targetId = $(this).data('target-id');
+            if (confirm('Are you sure you want to delete this reservation?')) {
+                $.post("/admin/api/deleteReservation", {
+                    id: targetId,
+                }).done(function (data) {
+                    $("#reservation-t-" + targetId).fadeOut("slow");
+                    $.notify(data.message, data.status);
+                });
+            }
+		});
+
         $("a[id='user-delete']").click(function () {
             var targetId = $(this).data('target-id');
             if (confirm('Are you sure you want to delete this user?')) {

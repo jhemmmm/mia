@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/success', 'HomeController@success')->name('success');
 
 //user
 Route::get('/manage', 'UserController@manageTable')->name('manageTable');
@@ -31,6 +32,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
   Route::get('/', 'AdminController@index');
 
   Route::group(['prefix' => 'api'], function(){
+    //Reservation
+    Route::post('/deleteReservation', 'AdminController@deleteReservation')->name('deleteReservation');
+
     //Product
     Route::post('/addProduct', 'AdminController@addProduct')->name('addProduct');
     Route::post('/editProduct', 'AdminController@editProduct')->name('editProduct');

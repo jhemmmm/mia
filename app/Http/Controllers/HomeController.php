@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Book;
@@ -41,5 +41,28 @@ class HomeController extends Controller
           'categories' => $categories,
           'books' => $books,
         ]);
+    }
+
+    public function success(Request $request)
+    {
+      if(!$request->token)
+        return abort(404);
+
+      $book = Book::with(['category'])->where('transaction_token', $request->token)->first();
+      if(!$book)
+        return abort(404);
+      
+      $book->status = 1;
+      $book->save();
+
+      $total = 0;
+      foreach($book->category as $category){
+        $total += $category->price * $category->pivot->category_quantity;
+      }
+
+      return view('success', [
+        'book' => $book,
+        'total' => $total,
+      ]);
     }
 }

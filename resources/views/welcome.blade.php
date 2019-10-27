@@ -74,13 +74,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="date-input" class="col-12 col-form-label">Date & Time:</label>
+                            <div class="col-12">
+                                <input class="form-control" type="datetime-local" value="" id="date-input" max="2021-01-01 00:00:00" min="2018-01-01 00:00:00">
+                            </div>
+                        </div>
                         <div class="row">
-                          <div class="col-6 text-center">
-                            <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> Per Head</label>
-                          </div>
-                          <div class="col-6 text-center">
-                            <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> Per Package</label>
-                          </div>
+                            <div class="col-6 text-center">
+                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> Per Head</label>
+                            </div>
+                            <div class="col-6 text-center">
+                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> Per Package</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -100,85 +106,68 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div id="selectTableBody" class="modal-body">
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label">Available Table:</label>
-                            <div class="col-12">
-                                <select id="selectTableAvailable" class="form-control" name="selectTableAvailable">
-                                </select>
-                            </div>
+                        <div id="enableSelectTable" class="d-none">
+                            <div class="text-center"><div class="loader"></div>Loading....</div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="date-input" class="col-12 col-form-label">Date & Time:</label>
-                            <div class="col-12">
-                                <input class="form-control" type="datetime-local" value="" id="date-input" max="2021-01-01 00:00:00" min="2018-01-01 00:00:00">
-                            </div>
-                        </div>
-
-                        <div id="selectPackageBody">
-                          <div id="displayPerHead" class="row d-none">
-                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
-                              <h1>Test</h1>
-                              <label>299</label>
-                              <div class="input-group number-spinner">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="dwn">-</button>
-                                  </span>
-                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="up">+</button>
-                                  </span>
-                              </div>
-                            </div>
-                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
-                              <h1>Test</h1>
-                              <label>299</label>
-                              <div class="input-group number-spinner">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="dwn">-</button>
-                                  </span>
-                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="up">+</button>
-                                  </span>
-                              </div>
-                            </div>
-                            <div id="selectPerhead" class="col-6 col-md-4 text-center">
-                              <h1>Test</h1>
-                              <label>299</label>
-                              <div class="input-group number-spinner">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="dwn">-</button>
-                                  </span>
-                                  <input data-id="0" type="number" class="form-control text-center" value="0" min="0" max="99">
-                                  <span class="input-group-btn">
-                                      <button class="btn btn-primary" data-dir="up">+</button>
-                                  </span>
-                              </div>
-                            </div>
-                          </div>
-
-                            <div id="displayPackage" class="row d-none">
-                                @foreach($categories as $category)
-                                <div class="selectPackage col-6 col-md-4 text-center">
-                                    <h1>{{ $category->name }}</h1>
-                                    <label>{{ $category->price }}</label>
-                                    <div class="input-group number-spinner">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" data-dir="dwn">-</button>
-                                        </span>
-                                        <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="99">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" data-dir="up">+</button>
-                                        </span>
-                                    </div>
+                        <div id="enableSelectTableBody">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Available Table:</label>
+                                <div class="col-12">
+                                    <select id="selectTableAvailable" class="form-control" name="selectTableAvailable">
+                                    </select>
                                 </div>
-                                @endforeach
+                            </div>
+                            <div id="selectPackageBody">
+                                <label>Select your order:</label>
+                                <div id="displayPerHead" class="row d-none">
+                                    @foreach($per_head as $category)
+                                    <div id="selectPerhead" class="col-6 col-md-3 text-center">
+                                        <div id="selectPerheadBtn">
+                                            <h1>{{ $category->name }}</h1>
+                                            <label>{{ $category->price }}</label>
+                                        </div>
+                                        <div class="input-group number-spinner">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" data-dir="dwn">-</button>
+                                            </span>
+                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" data-dir="up">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div id="displayPackage" class="row d-none">
+                                    @foreach($per_pack as $category)
+                                    <div class="selectPackage col-6 col-md-4 text-center">
+                                        <h1>{{ $category->name }}</h1>
+                                        <label>{{ $category->price }}</label>
+                                        <div class="input-group number-spinner">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" data-dir="dwn">-</button>
+                                            </span>
+                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" data-dir="up">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    @endforeach
 
 
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">Payment:</label>
+                                <div class="col-12">
+                                    <select id="paymentType" class="form-control" name="paymentType">
+                                        <option value="paypal" selected>Paypal</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button id="submitSelectTable" type="button" class="btn btn-primary btn-lg btn-block">CONTINUE</button>
@@ -279,45 +268,45 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <label>Current password</label>
-                                    <input id="setting-cur_password" type="password" class="form-control" name="cur_password" value="" required>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Name</label>
-                                    <input id="setting-name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Email</label>
-                                    <input id="setting-email" type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>New password</label>
-                                    <input id="setting-password" type="password" class="form-control" name="password" value="">
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Confirm new password</label>
-                                    <input id="setting-confirm-password" type="password" class="form-control" name="password_confirmation" value="">
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Address</label>
-                                    <input id="setting-address" type="text" class="form-control" name="address" value="{{ Auth::user()->address }}" required>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Optional Address</label>
-                                    <input id="setting-optional_address" type="text" class="form-control" name="optional_address" value="{{ Auth::user()->optional_address }}">
-                                </div>
-                                <div class="form-group col-12">
-                                    <label>Mobile</label>
-                                    <input id="setting-mobile" type="text" class="form-control" name="mobile" value="{{ Auth::user()->mobile }}" required>
-                                </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label>Current password</label>
+                                <input id="setting-cur_password" type="password" class="form-control" name="cur_password" value="" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Name</label>
+                                <input id="setting-name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Email</label>
+                                <input id="setting-email" type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>New password</label>
+                                <input id="setting-password" type="password" class="form-control" name="password" value="">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Confirm new password</label>
+                                <input id="setting-confirm-password" type="password" class="form-control" name="password_confirmation" value="">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Address</label>
+                                <input id="setting-address" type="text" class="form-control" name="address" value="{{ Auth::user()->address }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Optional Address</label>
+                                <input id="setting-optional_address" type="text" class="form-control" name="optional_address" value="{{ Auth::user()->optional_address }}">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Mobile</label>
+                                <input id="setting-mobile" type="text" class="form-control" name="mobile" value="{{ Auth::user()->mobile }}" required>
                             </div>
                         </div>
-                        <div class="modal-footer" style="display: block !important">
-                            <button id="edit-user" type="submit" class="btn btn-primary btn-block">EDIT USER</button>
-                            <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer" style="display: block !important">
+                        <button id="edit-user" type="submit" class="btn btn-primary btn-block">EDIT USER</button>
+                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,28 +314,16 @@
         @endguest
         <script>
             $(document).ready(function () {
-                $('div[id=selectPerhead]').click(function(){
-                  //disable class
-                  $('div[id=selectPerhead]').each(function (index, value) {
-                      var curThis = $(this);
-                      curThis.removeClass("active");
-                  });
-
-                  var curThis = $(this);
-                  curThis.addClass("active");
-
-                });
-
-                 $('#edit-user').click(function(event){
+                $('#edit-user').click(function (event) {
                     $.post("/api/editNormalUser", {
-                        cur_password : $("#setting-cur_password").val(),
-                        name : $("#setting-name").val(),
-                        email : $("#setting-email").val(),
-                        password : $("#setting-password").val(),
-                        password_confirmation : $("#setting-confirm-password").val(),
-                        address : $("#setting-address").val(),
-                        optional_address : $("#setting-optional_address").val(),
-                        mobile : $('#setting-mobile').val(),
+                        cur_password: $("#setting-cur_password").val(),
+                        name: $("#setting-name").val(),
+                        email: $("#setting-email").val(),
+                        password: $("#setting-password").val(),
+                        password_confirmation: $("#setting-confirm-password").val(),
+                        address: $("#setting-address").val(),
+                        optional_address: $("#setting-optional_address").val(),
+                        mobile: $('#setting-mobile').val(),
                     }).done(function (data) {
                         console.log(data);
                         $.notify(data.message, data.status);
@@ -404,18 +381,37 @@
                     });
                 });
 
+
                 var totalPerson = 0;
                 var typeOrderValue = 0;
+                var date = 0;
                 $("#submitTotalPerson").click(function () {
+                    var curThis = $(this);
+                    curThis.attr("disabled", true);
                     totalPerson = $('#totalPersonValue').val();
                     typeOrderValue = $("input[name='type']:checked").val();
+                    date = $('#date-input').val();
+                    
+                    var curDate = new Date();
+                    if (date == "") {
+                        $.notify("Date & Time is invalid.", "error");
+                        return;
+                    }else if(Date.parse(date) <= Date.parse(curDate)){
+                        $.notify("There is soemthing wrong with your date & time", "error");
+                        return;
+                    }
                     //add loading
                     $.post("/api/getAvailableTable", {
                         totalPerson: totalPerson,
                         typeOrderValue: typeOrderValue,
+                        time : date,
                     }).done(function (data) {
+                        curThis.attr("disabled", false);
                         if (data.status == "login") {
                             window.location.href = "/login";
+                            return;
+                        }else if(data.status == "info"){
+                            $.notify(data.message, data.status);
                             return;
                         }
                         $('#selectTableAvailable').empty();
@@ -431,27 +427,42 @@
                                 value: 0,
                                 text: "No table available"
                             }));
+
+                            $.notify("There is no available tables right now. :(", "info");
+                            return;
                         }
                         $('#exampleModal').modal('hide');
                         $('#selectTableModal').modal('show');
-                        if(typeOrderValue == 1){
-                          $("#selectPerhead").click();
-                          $('#displayPerHead').removeClass("d-none");
-                          $('#displayPackage').addClass("d-none");
-                        }else{
-                          $('#displayPerHead').addClass("d-none");
-                          $('#displayPackage').removeClass("d-none");
+                        if (typeOrderValue == 1) {
+                            $("#selectPerheadBtn").click();
+                            $('#displayPerHead').removeClass("d-none");
+                            $('#displayPackage').addClass("d-none");
+                        } else {
+                            $('#displayPerHead').addClass("d-none");
+                            $('#displayPackage').removeClass("d-none");
                         }
-                        console.log(typeOrderValue);
                     });
+                });
+
+                $('div[id=selectPerheadBtn]').click(function () {
+                    var curThis = $(this).parent();
+                    //disable class
+                    $('div[id=selectPerhead]').each(function (index, value) {
+                        var curThis = $(this);
+                        curThis.removeClass("active");
+                        curThis.find('.form-control').val(0);
+                    });
+
+                    curThis.find('.form-control').val(totalPerson)
+                    curThis.addClass("active");
                 });
 
                 $('#submitSelectTable').click(function () {
                     var tableId = $('#selectTableAvailable').val();
-                    var date = $('#date-input').val();
                     var categoryId = [];
                     var categoryQuantity = [];
 
+                    //insert order id's and quantities
                     $('input[type=number]').each(function (index, value) {
                         var curThis = $(this);
                         var id = curThis.data('id');
@@ -461,14 +472,11 @@
                             categoryQuantity.push(quantity);
                         }
                     });
-
-                    if (date == "") {
-                        alert("Invalid time.");
-                        return;
-                    }
                     if (categoryId.length == 0) {
                         alert("You have selected 0 order");
                     } else {
+                        $('#enableSelectTable').removeClass('d-none');
+                        $('#enableSelectTableBody').addClass('d-none');
                         $.post("/api/saveBook", {
                             tableId: tableId,
                             date: date,
@@ -479,8 +487,14 @@
                             if (data.status == "login") {
                                 window.location.href = "/login";
                                 return;
+                            }else if(data.status == "fail"){
+                                $('#enableSelectTable').addClass('d-none');
+                                $('#enableSelectTableBody').removeClass('d-none');
+                                $.notify(data.message, 'info');
+                                return;
                             }
-                            console.log(data);
+                            $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
+                            window.location.href = data.redirect_url;
                         });
                     }
                     //$('#selectPackageModal').modal('show');

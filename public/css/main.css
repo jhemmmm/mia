@@ -93,6 +93,10 @@ body {
     min-height: 250px;
 }
 
+.modal {
+    overflow: auto !important;
+}
+
 .bg-white {
     background: #212529 !important;
 }
@@ -106,19 +110,27 @@ body {
     width: 100%;
 }
 
-#selectPerhead{
-  border: 1px solid #c4c4c4;
-  background: #cfcfcf;
+#selectPerhead {
+    cursor: pointer;
+    border: 1px solid #c4c4c4;
+    background: #cfcfcf;
+    background: url(../images/x.png) #cfcfcf no-repeat;
+    background-position: top left;
+    background-size: 35px;
+    padding: 25px;
 }
 
-#selectPerhead.active{
-  border: 1px solid #c4c4c4;
-  background: #95ffb1;
+#selectPerhead.active {
+    border: 1px solid #c4c4c4;
+    background: url(../images/check.png) #95ffb1 no-repeat;
+    background-position: top left;
+    background-size: 35px;
 }
 
 .selectPackage {
     border: 1px solid #c4c4c4;
     background: #cfcfcf;
+    padding: 25px;
 }
 
 .card,
@@ -164,6 +176,26 @@ body {
     color: #fff;
     background-color: #ef9903;
     border-color: #ef9903;
+}
+
+.loader {
+    width: 120px;
+    height: 120px;
+    background: url(../images/loading.gif);
+    background-size: 100%;
+    margin: 0 auto;
+}
+
+.plain {
+    border-style: inset;
+    border-top: 1px solid;
+    border-bottom: 0px;
+    border-bottom: none;
+    border-left: none;
+    margin: 4px;
+    display: block;
+    height: 1px;
+    clear: both;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
