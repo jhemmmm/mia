@@ -270,7 +270,7 @@
                         mobile: $('#setting-mobile').val(),
                     }).done(function (data) {
                         console.log(data);
-                        $.notify(data.message, data.status);
+                        $.notify(data.message, { position: "right bottom", className : data.status });
                     });
                 });
 
@@ -280,7 +280,7 @@
                         id: curThis.data('id'),
                         time: $("#date-input-order").val(),
                     }).done(function (data) {
-                        $.notify(data.message, data.status);
+                        $.notify(data.message, { position: "right bottom", className : data.status });
                     });
                 });
 
@@ -289,7 +289,7 @@
                     $.post("/api/cancelOrder", {
                         id: curThis.data('id'),
                     }).done(function (data) {
-                        $.notify(data.message, data.status);
+                        $.notify(data.message, { position: "right bottom", className : data.status });
                     });
                 });
 
@@ -339,11 +339,11 @@
                     var curDate = new Date();
                     if (date == "") {
                         curThis.attr("disabled", false);
-                        $.notify("Date & Time is invalid.", "error");
+                        $.notify("Date & Time is invalid.", { position: "right bottom", className : "error" });
                         return;
                     }else if(Date.parse(date) <= Date.parse(curDate)){
                         curThis.attr("disabled", false);
-                        $.notify("There is soemthing wrong with your date & time", "error");
+                        $.notify("There is soemthing wrong with your date & time", { position: "right bottom", className : "error" });
                         return;
                     }
                     //add loading
@@ -374,7 +374,7 @@
                                 text: "No table available"
                             }));
 
-                            $.notify("There is no available tables right now. :(", "info");
+                            $.notify("There is no available tables right now. :(", { position: "right bottom", className : "info" });
                             return;
                         }
                         $('#exampleModal').modal('hide');
@@ -436,7 +436,7 @@
                             }else if(data.status == "fail"){
                                 $('#enableSelectTable').addClass('d-none');
                                 $('#enableSelectTableBody').removeClass('d-none');
-                                $.notify(data.message, 'info');
+                                $.notify(data.message, { position: "right bottom", className : "info" });
                                 return;
                             }
                             $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
