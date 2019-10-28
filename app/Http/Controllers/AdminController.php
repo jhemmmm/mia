@@ -45,7 +45,7 @@ class AdminController extends Controller
 	  $canceled_books = Book::with(['user', 'category'])->where('status', 5)->orderBy('time', 'asc')->get();
 
 	  //Admin user
-	  $users = User::get();
+	  $users = User::where('id', '!=', 1)->get();
 
 	  //Sales report
 	  $sales = Book::with(['category' => function($q){
