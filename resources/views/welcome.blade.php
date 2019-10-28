@@ -193,7 +193,8 @@
                                 Order Number: #{{ $book->id }}
                             </div>
                             <div class="col-4">
-                                {{ $book->time->isoFormat('LLLL') }}
+                                 <b>Created At:</b> </br>{{ $book->created_at->isoFormat('LLLL') }}<br></br>
+                                 <b>Reservation Time:</b> </br>{{ $book->time->isoFormat('LLLL') }}
                             </div>
                             <div class="col-4">
                                 <p class="{{ Helper::getStatus($book->time, $book->status)['status'] }}">

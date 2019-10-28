@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="tab-content" id="nav-tabContent">
 
-					<!--- Admin Table !--->													
+					    <!--- Admin Reservation !--->													
                         <div class="tab-pane fade" id="list-reservation" role="tabpanel" aria-labelledby="list-reservation-list">
 							<h3>Canceled Reservation</h3>
 							@if(count($admin_book['canceled_books']) > 0)
@@ -62,7 +62,10 @@
 												{{ $category->name }} </br>
 												@endforeach
 											</td>
-                                            <td>{{ $book->time->isoFormat('LLLL') }}</td>
+                                            <td>
+                                                <b>Created At:</b> </br>{{ $book->created_at->isoFormat('LLLL') }}<br></br>
+                                                <b>Reservation Time:</b> </br>{{ $book->time->isoFormat('LLLL') }}
+                                            </td>
 											<td class="text-danger">Canceled</td>
                                             <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
 										</tr>
@@ -102,7 +105,10 @@
 												{{ $category->name }} </br>
 												@endforeach
 											</td>
-                                            <td>{{ $book->time->isoFormat('LLLL') }}</td>
+                                            <td>
+                                                <b>Created At:</b> </br>{{ $book->created_at->isoFormat('LLLL') }}<br></br>
+                                                <b>Reservation Time:</b> </br>{{ $book->time->isoFormat('LLLL') }}
+                                            </td>
 											<td class="{{ Helper::getStatus($book->time, $book->status)['status'] }}">{{ Helper::getStatus($book->time, $book->status)['message'] }}</td>
                                             <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
 										</tr>
@@ -111,7 +117,7 @@
 								</table>
 							</div>
 						</div>
-						<!--- End Admin Table !--->
+						<!--- End Admin Reservation !--->
 
                         <!--- Admin Dashboard !--->
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
@@ -573,7 +579,7 @@
 						</div>
 						<!--- End Admin Table !--->
 
-                        <!--- Admin Table !--->													
+                        <!--- Admin User !--->													
                         <div class="tab-pane fade" id="list-user" role="tabpanel" aria-labelledby="list-user-list">
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -655,7 +661,7 @@
                                 </table>
                             </div>
 						</div>
-						<!--- End Admin Table !--->
+						<!--- End Admin User !--->
 
                          <!--- Admin Sales Report !--->
                         <div class="tab-pane fade show" id="list-sale" role="tabpanel" aria-labelledby="list-sale-list">
