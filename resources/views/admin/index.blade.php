@@ -20,9 +20,10 @@
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
 				<a class="list-group-item list-group-item-action" id="list-reservation-list" data-toggle="list" href="#list-reservation" role="tab" aria-controls="product">Reservations</a>
                 <a class="list-group-item list-group-item-action" id="list-product-list" data-toggle="list" href="#list-product" role="tab" aria-controls="product">Products</a>
-                <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Items</a>
+                <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Product Inventory</a>
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="table">Users</a>
+                <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Sales Report</a>
             </div>
         </div>
         <div class="col-12 col-md-10">
@@ -156,52 +157,6 @@
                                         <small>Total Table</small>
                                     </div>
                                 </div>
-                                <div class="col-12 py-2">
-                                    <div class="bg-light p-4">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="text-left">
-                                                    <h5>Sales Report</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group text-right">
-                                                    <select class="form-control" name="sort-sale">
-                                                        <option value="0">Today</option>
-                                                        <option value="1">Last Week</option>
-                                                        <option value="2">Last Month</option>
-                                                    </select>
-                                                </div> 
-                                            </div>
-                                            <div class="col-12"><hr></div>
-                                            <?php $sale_total = 0; ?>
-                                            @foreach($admin_sale['sales'] as $sale)
-                                            <div class="col-12"> 
-                                                <div class="float-left"><b>Reservation #{{ $sale->id }}</b></div>
-                                                <div class="text-right">
-                                                    <small>
-                                                    <br>
-                                                    @foreach($sale->category as $category)
-                                                        Name: {{ $category->name }} <br>
-                                                        Price: ₱{{ $category->price }} <br>
-                                                        Qty: {{ $category->pivot->category_quantity }}
-                                                        <?php $sale_total += $category->price * $category->pivot->category_quantity ?>
-                                                    @endforeach
-                                                    </small>
-                                                </div>
-                                                <div class="px-5"><hr></div>
-                                            </div>
-                                            @endforeach
-                                            <div class="col-6 text-left">
-                                                <h2>Total Received</h2>
-                                            </div>
-                                            <div class="col-6 text-right">
-                                                <h2>₱{{ $sale_total }} </h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                         <!--- End Admin Dashboard !--->
@@ -702,6 +657,62 @@
 						</div>
 						<!--- End Admin Table !--->
 
+                         <!--- Admin Sales Report !--->
+                        <div class="tab-pane fade show" id="list-sale" role="tabpanel" aria-labelledby="list-sale-list">
+                            <div class="row justify-content-center">
+                                <div class="col-12 py-2">
+                                    <div class="bg-light p-4">
+                                        <div id="DivIdToPrint" class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="text-left">
+                                                    <h5>Sales Report</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group text-right">
+                                                    <select class="form-control" name="sort-sale">
+                                                        <option value="0">Today</option>
+                                                        <option value="1">Last Week</option>
+                                                        <option value="2">Last Month</option>
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                            <div class="col-12"><hr></div>
+                                            <?php $sale_total = 0; ?>
+                                            @foreach($admin_sale['sales'] as $sale)
+                                            <div class="col-12"> 
+                                                <div class="float-left"><b>Reservation #{{ $sale->id }}</b></div>
+                                                <div class="text-right">
+                                                    <small>
+                                                    <br>
+                                                    @foreach($sale->category as $category)
+                                                        Name: {{ $category->name }} <br>
+                                                        Price: ₱{{ $category->price }} <br>
+                                                        Qty: {{ $category->pivot->category_quantity }}
+                                                        <?php $sale_total += $category->price * $category->pivot->category_quantity ?>
+                                                    @endforeach
+                                                    </small>
+                                                </div>
+                                                <div class="px-5"><hr></div>
+                                            </div>
+                                            @endforeach
+                                            <div class="col-6 text-left">
+                                                <h2>Total Received</h2>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <h2>₱{{ $sale_total }} </h2>
+                                            </div>
+                                        </div>
+                                         <div class="float-right">
+                                            <a onclick="printDiv()" href="#"><i class="fas fa-print"></i> PRINT</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--- End Admin Sales Report !--->
+
                     </div>
                 </div>
             </div>
@@ -709,6 +720,15 @@
     </div>
 </div>
 <script>
+function printDiv() 
+{
+  var divToPrint=document.getElementById('DivIdToPrint');
+  var newWin=window.open('','Print-Window');
+  newWin.document.open();
+  newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+  newWin.document.close();
+  setTimeout(function(){newWin.close();},10);
+}
 $(function(){
     $(document).ready(function () {
         $("a[id='reservation-delete']").click(function () {
