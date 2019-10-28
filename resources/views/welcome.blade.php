@@ -394,9 +394,11 @@
                     
                     var curDate = new Date();
                     if (date == "") {
+                        curThis.attr("disabled", false);
                         $.notify("Date & Time is invalid.", "error");
                         return;
                     }else if(Date.parse(date) <= Date.parse(curDate)){
+                        curThis.attr("disabled", false);
                         $.notify("There is soemthing wrong with your date & time", "error");
                         return;
                     }

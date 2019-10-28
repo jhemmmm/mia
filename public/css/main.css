@@ -16,7 +16,7 @@ body {
 .hr-border {
     height: 4px;
     background: #333;
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 5px;
     background: rgba(248, 80, 50, 0);
