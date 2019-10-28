@@ -41,7 +41,7 @@ class AdminController extends Controller
 	  $tables = Table::get();
 
 	  //Admin reservation
-	  $books = Book::with(['user', 'category'])->orderBy('time', 'asc')->get();
+	  $books = Book::with(['user', 'category'])->where('status', '!=', 0)->orderBy('time', 'asc')->get();
 	  $canceled_books = Book::with(['user', 'category'])->where('status', 5)->orderBy('time', 'asc')->get();
 
 	  //Admin user
