@@ -110,16 +110,19 @@ class AdminController extends Controller
 		
 		$validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
             'mobile' => ['required', 'numeric', 'min:09000000000', 'max:09999999999'],
         ]);
 		
-		if($validator->fails())
+		if($validator->fails()){
+			$error = $validator->errors()->first();
+			dd($error);
 			return response()->json([
 				'status' => 'error',
 				'message' => 'Something went wrong, check your email if correct or your mobile number is incorrect :)',
 			]);
+		}
 
 		$user->name = $request->name;
 		$user->email = $request->email;
@@ -152,7 +155,7 @@ class AdminController extends Controller
 	{
 		$this->validate($request, [
 			'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
             'mobile' => ['required'],
 		]);
