@@ -70,8 +70,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(!in_array(Auth::id(), config('app.admin_id')))
                                     <a data-toggle="modal" data-target="#manageTableModal" class="dropdown-item" href="#"><i class="fas fa-tasks"></i> Manage My Table</a>
-                                    <a data-toggle="modal" data-target="#userSettingModal" class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Settings</a>
                                     @endif
+                                    <a data-toggle="modal" data-target="#userSettingModal" class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Settings</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -81,7 +81,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
+                                </div>                               
                             </li>
                         @endguest
                     </ul>
@@ -91,7 +91,64 @@
 
         <main style="padding-top: 150px !important;" class="py-4">
             @yield('content')
+
         </main>
+
+         @guest
+        @else
+        <!--- Manage User Ordered Modal !--->
+        <div class="modal fade" id="userSettingModal" tabindex="-1" role="dialog" aria-labelledby="userSettingModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="userSettingModalLabel">EDIT {{ Auth::user()->name }} </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label>Current password</label>
+                                <input id="setting-cur_password" type="password" class="form-control" name="cur_password" value="" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Name</label>
+                                <input id="setting-name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Email</label>
+                                <input id="setting-email" type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>New password</label>
+                                <input id="setting-password" type="password" class="form-control" name="password" value="">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Confirm new password</label>
+                                <input id="setting-confirm-password" type="password" class="form-control" name="password_confirmation" value="">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Address</label>
+                                <input id="setting-address" type="text" class="form-control" name="address" value="{{ Auth::user()->address }}" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Optional Address</label>
+                                <input id="setting-optional_address" type="text" class="form-control" name="optional_address" value="{{ Auth::user()->optional_address }}">
+                            </div>
+                            <div class="form-group col-12">
+                                <label>Mobile</label>
+                                <input id="setting-mobile" type="text" class="form-control" name="mobile" value="{{ Auth::user()->mobile }}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="display: block !important">
+                        <button id="edit-user" type="submit" class="btn btn-primary btn-block">EDIT USER</button>
+                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--- End Manage User Ordered Modal !--->
+        @endguest
     </div>
 </body>
 </html>

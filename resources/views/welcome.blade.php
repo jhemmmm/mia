@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <h1 class="title">Our Menu</h1>
+            <h1 class="text-white title">Our Menu</h1>
             <div class="hr-border"></div>
         </div>
         <!-- Start Total People Modal -->
@@ -256,62 +256,6 @@
             </div>
         </div>
         <!--- End Manage User Ordered Modal !--->
-
-        @guest
-        @else
-        <!--- Manage User Ordered Modal !--->
-        <div class="modal fade" id="userSettingModal" tabindex="-1" role="dialog" aria-labelledby="userSettingModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="userSettingModalLabel">EDIT {{ Auth::user()->name }} </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label>Current password</label>
-                                <input id="setting-cur_password" type="password" class="form-control" name="cur_password" value="" required>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Name</label>
-                                <input id="setting-name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Email</label>
-                                <input id="setting-email" type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>New password</label>
-                                <input id="setting-password" type="password" class="form-control" name="password" value="">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Confirm new password</label>
-                                <input id="setting-confirm-password" type="password" class="form-control" name="password_confirmation" value="">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Address</label>
-                                <input id="setting-address" type="text" class="form-control" name="address" value="{{ Auth::user()->address }}" required>
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Optional Address</label>
-                                <input id="setting-optional_address" type="text" class="form-control" name="optional_address" value="{{ Auth::user()->optional_address }}">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Mobile</label>
-                                <input id="setting-mobile" type="text" class="form-control" name="mobile" value="{{ Auth::user()->mobile }}" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style="display: block !important">
-                        <button id="edit-user" type="submit" class="btn btn-primary btn-block">EDIT USER</button>
-                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--- End Manage User Ordered Modal !--->
-        @endguest
         <script>
             $(document).ready(function () {
                 $('#edit-user').click(function (event) {
@@ -513,7 +457,7 @@
         @endforeach
 
         <div class="col-md-12 text-center m-4" style="background: #dbdbdb;">
-            <h1 class="title">Our Store</h1>
+            <h1 class="title text-white">Our Store</h1>
             <div class="hr-border"></div>
             <div class="gallery">
                 <div class="mb-3 pics animation all 2">
