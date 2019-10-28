@@ -5,12 +5,12 @@
     <div class="header-container container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <h1>Annyeong Samgyupsal <br>
-                    Reservation Online System
+                <i><h1>ANNYEONG SAMGYUPSAL <br>
+                    Online Reservation  System </i>
                     <br>
                 </h1>
                 <div class="hr-border"></div>
-                <p>Don't waste your time, reserve your table online!. One of the best online reservation system</p>
+               <i><marquee> <p>ANNYEONGHASEYO..Welcome to ANNYEONG SAMGYUPSAL ONLINE RESERVATION...</p></marquee></i>
             </div>
         </div>
     </div>

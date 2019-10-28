@@ -167,7 +167,7 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group text-right">
                                                     <select class="form-control" name="sort-sale">
-                                                        <option value="0">Totay</option>
+                                                        <option value="0">Today</option>
                                                         <option value="1">Last Week</option>
                                                         <option value="2">Last Month</option>
                                                     </select>
