@@ -117,10 +117,9 @@ class AdminController extends Controller
 		
 		if($validator->fails()){
 			$error = $validator->errors()->first();
-			dd($error);
 			return response()->json([
 				'status' => 'error',
-				'message' => 'Something went wrong, check your email if correct or your mobile number is incorrect :)',
+				'message' => $error,
 			]);
 		}
 
