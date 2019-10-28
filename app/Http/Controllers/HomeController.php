@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $books = null;
         if(Auth::id())
-          $books = Book::with(['category'])->where('user_id', Auth::id())->get();
+          $books = Book::with(['category'])->where('status', '!=', 0)->where('user_id', Auth::id())->get();
 
         $categories = Category::get();
 
