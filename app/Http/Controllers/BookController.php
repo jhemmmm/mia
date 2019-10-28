@@ -172,8 +172,6 @@ class BookController extends Controller
       }
 
       $data['total'] = $total; 
-            //give a discount of 10% of the order amount
-      $data['shipping_discount'] = round((1 / 100) * $total, 2);
       
       $response = $provider->setExpressCheckout($data);
       $book->transaction_token = $response['TOKEN'];
