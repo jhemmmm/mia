@@ -3,6 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-8 my-2">
+            @if ($errors->any())
+            <div class="bg-danger text-white p-4">
+                @foreach ($errors->all() as $error)
+                    <div>{{$error}}</div>
+                @endforeach
+            </div>
+            @endif
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>

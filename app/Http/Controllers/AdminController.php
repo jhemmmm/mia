@@ -112,7 +112,7 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
-            'mobile' => ['required', 'numeric', 'min:09000000000', 'max:09999999999'],
+            'mobile' => ['required', 'numeric', 'size:11'],
         ]);
 		
 		if($validator->fails()){
@@ -156,7 +156,7 @@ class AdminController extends Controller
 			'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
-            'mobile' => ['required'],
+            'mobile' => ['required', 'numeric', 'size:11'],
 		]);
 
 		$user = User::find($request->id);
