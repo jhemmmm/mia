@@ -50,7 +50,7 @@ $( document ).ready(function() {
         Host : "smtp25.elasticemail.com",
         Username : "warrockph24@gmail.com",
         Password : "d8490dfe-be04-40cc-a361-1af431da7226",
-        To : 'maejhem1@gmail.com',
+        To : "<?php echo Auth::user()->email; ?>",
         From : "warrockph24@gmail.com",
         Subject : "Order #" + <?php echo $book->id; ?> + " Has been successfully paid",
         Body : $('#DivIdToPrint').html()

@@ -13,7 +13,7 @@ return [
     |
     */
     'admin_id' => [
-      1,4
+      1
     ],
 
     'name' => env('APP_NAME', 'Laravel'),
