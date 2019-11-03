@@ -73,6 +73,11 @@ class BookController extends Controller
           'status' => 'login'
         ]);
 
+      if(!Auth::user()->hasVerifiedEmail())
+          return response()->json([
+            'status' => 'verify'
+          ]);
+
       $totalPerson = $request->totalPerson;
       $time = Carbon::parse(strtotime($request->time));
 

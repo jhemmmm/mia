@@ -357,6 +357,9 @@
                         if (data.status == "login") {
                             window.location.href = "/login";
                             return;
+                        }else if(data.status == "verify"){
+                            window.location.href = "/email/verify";
+                            return;
                         }else if(data.status == "info"){
                             $.notify(data.message, data.status);
                             return;
