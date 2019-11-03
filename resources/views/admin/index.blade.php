@@ -24,6 +24,7 @@
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="table">Users</a>
                 <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Sales Report</a>
+                <a class="list-group-item list-group-item-action" id="list-refund-list" data-toggle="list" href="#list-refund" role="tab" aria-controls="table">Refund List</a>
             </div>
         </div>
         <div class="col-12 col-md-10">
@@ -34,50 +35,6 @@
 
 					    <!--- Admin Reservation !--->													
                         <div class="tab-pane fade" id="list-reservation" role="tabpanel" aria-labelledby="list-reservation-list">
-							<h3>Canceled Reservation</h3>
-							@if(count($admin_book['canceled_books']) > 0)
-							<div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Details</th>
-											<th scope="col">Ordered</th>
-                                            <th scope="col">Time</th>
-											<th scope="col">Status</th>
-                                            <th scope="col">Tools</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-										@foreach($admin_book['canceled_books'] as $book)
-                                        <tr id="reservation-t-{{ $book->id }}">
-                                            <th scope="row">#{{ $book->id }}</th>
-                                            <td>
-												Name: <b>{{ $book->user->name }} </b></br>
-												Total Person: <b>{{ $book->total_person }}</b></br>
-												Table #: <b>{{ $book->table_id }} </b> </br></br>
-											</td>
-											<td>
-												@foreach($book->category as $category)
-												{{ $category->name }} </br>
-												@endforeach
-											</td>
-                                            <td>
-                                                <b>Created At:</b> </br>{{ $book->created_at->isoFormat('LLLL') }}<br></br>
-                                                <b>Reservation Time:</b> </br>{{ $book->time->isoFormat('LLLL') }}
-                                            </td>
-											<td class="text-danger">Canceled</td>
-                                            <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-							</div>
-							@else
-							<div class="alert alert-success">
-								You have 0 canceled reservation
-							</div>
-							@endif
 							<h3>Reservation</h3>
 							<div class="table-responsive">
                                 <table class="table table-striped">
@@ -122,43 +79,43 @@
                         <!--- Admin Dashboard !--->
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="row justify-content-center">
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-primary text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_reservation'] }}</h1>
                                         <small>Reservation Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-secondary text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_registration'] }}</h1>
                                         <small>Registered Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-success text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_cancel_order'] }}</h1>
                                         <small>Total Cancel Order</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-danger text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_items'] }}</h1>
                                         <small>Total Items</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-dark text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_product'] }}</h1>
                                         <small>Total Product</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-4 py-2">
-                                    <div class="bg-info text-white dashboard text-center p-4">
+                                <div class="col-6 col-md-2">
+                                    <div class="text-center">
                                         <h1>{{ $dashboard['total_table'] }}</h1>
                                         <small>Total Table</small>
                                     </div>
@@ -590,6 +547,7 @@
 											<th scope="col">Email</th>
                                             <th scope="col">Mobile Number</th>
                                             <th scope="col">Address</th>
+                                            <th scope="col">Created At</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -602,6 +560,9 @@
                                             <td>
                                                 {{ $user->address }} </br>
                                                 <b>Optional Address: </b> {{ $user->optional_address }}
+                                            </td>
+                                            <td>
+                                                {{ $user->created_at }}
                                             </td>
                                             <td>
 												<a data-toggle="modal" data-target="#editUser-{{ $user->id }}" href="#"><i class="fas fa-edit"></i></a>
@@ -686,15 +647,21 @@
                                             <div class="col-12"><hr></div>
                                             <?php $sale_total = 0; ?>
                                             @foreach($admin_sale['sales'] as $sale)
-                                            <div class="col-12"> 
-                                                <div class="float-left"><b>Reservation #{{ $sale->id }}</b></div>
+                                            <div id="sales-t-{{ $sale->id }}" class="col-12"> 
+                                                <div class="float-left">
+                                                <b>Reservation #{{ $sale->id }}</b></br>
+                                                <small>
+                                                    By: {{ $sale->user->name }} </br>
+                                                    Total Person: {{ $sale->total_person }}
+                                                </small>
+                                                </div>
                                                 <div class="text-right">
+                                                    <a id="reservation-delete" data-target-id="{{ $sale->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                                                     <small>
                                                     <br>
                                                     @foreach($sale->category as $category)
                                                         Name: {{ $category->name }} <br>
-                                                        Price: ₱{{ $category->price }} <br>
-                                                        Qty: {{ $category->pivot->category_quantity }}
+                                                        Price: ₱{{ $category->price }}  Qty: {{ $category->pivot->category_quantity }} <br>
                                                         <?php $sale_total += $category->price * $category->pivot->category_quantity ?>
                                                     @endforeach
                                                     </small>
@@ -719,6 +686,54 @@
                         </div>
                         <!--- End Admin Sales Report !--->
 
+                         <!--- Admin Dashboard !--->
+                        <div class="tab-pane fade show" id="list-refund" role="tabpanel" aria-labelledby="list-refund-list">
+                            <h3>Canceled Reservation</h3>
+							@if(count($admin_book['canceled_books']) > 0)
+							<div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Details</th>
+											<th scope="col">Ordered</th>
+                                            <th scope="col">Time</th>
+											<th scope="col">Status</th>
+                                            <th scope="col">Tools</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+										@foreach($admin_book['canceled_books'] as $book)
+                                        <tr id="reservation-t-{{ $book->id }}">
+                                            <th scope="row">#{{ $book->id }}</th>
+                                            <td>
+												Name: <b>{{ $book->user->name }} </b></br>
+												Total Person: <b>{{ $book->total_person }}</b></br>
+												Table #: <b>{{ $book->table_id }} </b> </br></br>
+											</td>
+											<td>
+												@foreach($book->category as $category)
+												{{ $category->name }} </br>
+												@endforeach
+											</td>
+                                            <td>
+                                                <b>Created At:</b> </br>{{ $book->created_at->isoFormat('LLLL') }}<br></br>
+                                                <b>Reservation Time:</b> </br>{{ $book->time->isoFormat('LLLL') }}
+                                            </td>
+											<td class="text-danger">Canceled</td>
+                                            <td><a id="reservation-delete" data-target-id="{{ $book->id }}" href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a></td>
+										</tr>
+										@endforeach
+									</tbody>
+								</table>
+							</div>
+							@else
+							<div class="alert alert-success">
+								You have 0 canceled reservation
+							</div>
+							@endif
+                        </div>
+                        <!--- End Admin Dashboard !--->                                                   
                     </div>
                 </div>
             </div>
@@ -744,6 +759,7 @@ $(function(){
                     id: targetId,
                 }).done(function (data) {
                     $("#reservation-t-" + targetId).fadeOut("slow");
+                    $("#sales-t-" + targetId).fadeOut("slow");
                     $.notify(data.message, data.status);
                 });
             }

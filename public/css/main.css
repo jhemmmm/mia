@@ -79,8 +79,7 @@ body {
 
 .order-block {
     background: url('../images/open.png') #343a40 no-repeat;
-    background-size: 100px;
-    background-position-x: 10px;
+    background-size: 70px;
     color: #fff;
     max-width: 700px;
     margin-left: auto;

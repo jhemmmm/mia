@@ -48,7 +48,7 @@ class AdminController extends Controller
 	  $users = User::where('id', '!=', 1)->get();
 
 	  //Sales report
-	  $sales = Book::with(['category' => function($q){
+	  $sales = Book::with(['user','category' => function($q){
 		  $q->with(['item']);
 	  }])->where('status', 1);
 
@@ -112,7 +112,7 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
-            'mobile' => ['required', 'numeric', 'size:11'],
+            'mobile' => ['required', 'digits:11'],
         ]);
 		
 		if($validator->fails()){
@@ -156,7 +156,7 @@ class AdminController extends Controller
 			'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'min:8'],
-            'mobile' => ['required', 'numeric', 'size:11'],
+            'mobile' => ['required', 'digits:11'],
 		]);
 
 		$user = User::find($request->id);

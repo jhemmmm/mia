@@ -1,16 +1,20 @@
 $(document).on('click', '.number-spinner button', function () {
-	var btn = $(this),
-		oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-		newVal = 0;
+    var btn = $(this),
+        oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+        newVal = 0,
+        minVal = btn.closest('.number-spinner').find('input').attr('min'),
+        maxVal = btn.closest('.number-spinner').find('input').attr('max');
 
-	if (btn.attr('data-dir') == 'up') {
-		newVal = parseInt(oldValue) + 1;
-	} else {
-		if (oldValue >= 1) {
-			newVal = parseInt(oldValue) - 1;
-		} else {
-			newVal = 0;
-		}
-	}
-	btn.closest('.number-spinner').find('input').val(newVal);
+    if (btn.attr('data-dir') == 'up') {
+        if (parseInt(maxVal) > parseInt(oldValue))
+            newVal = parseInt(oldValue) + 1;
+        else
+            newVal = parseInt(oldValue);
+    } else {
+        if (parseInt(minVal) != parseInt(oldValue))
+            newVal = parseInt(oldValue) - 1;
+        else
+            newVal = parseInt(minVal);
+    }
+    btn.closest('.number-spinner').find('input').val(newVal);
 });

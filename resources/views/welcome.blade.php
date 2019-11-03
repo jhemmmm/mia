@@ -130,7 +130,7 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" data-dir="dwn">-</button>
                                             </span>
-                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="50">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" data-dir="up">+</button>
                                             </span>
@@ -147,7 +147,7 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" data-dir="dwn">-</button>
                                             </span>
-                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="99">
+                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="20">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" data-dir="up">+</button>
                                             </span>
@@ -391,6 +391,7 @@
                     });
                 });
 
+                //check boxk
                 $('div[id=selectPerheadBtn]').click(function () {
                     var curThis = $(this).parent();
                     //disable class
@@ -398,6 +399,7 @@
                         var curThis = $(this);
                         curThis.removeClass("active");
                         curThis.find('.form-control').val(0);
+                        curThis.find('.form-control').attr('min', totalPerson);
                     });
 
                     curThis.find('.form-control').val(totalPerson)
