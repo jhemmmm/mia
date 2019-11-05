@@ -82,10 +82,10 @@
                         </div>
                         <div class="row">
                             <div class="col-6 text-center">
-                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> Per Head</label>
+                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> PAX</label>
                             </div>
                             <div class="col-6 text-center">
-                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> Per Package</label>
+                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> PACKAGE</label>
                             </div>
                         </div>
                     </div>
