@@ -275,6 +275,7 @@ body {
     padding: 15px;
     width: 100%;
     position: relative;
+    background: #212529;
 }
 
 .MultiCarousel .MultiCarousel-inner {
