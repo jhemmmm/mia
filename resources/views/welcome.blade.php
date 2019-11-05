@@ -578,7 +578,7 @@
         });
     </script>
 
-        <div class="col-md-12 text-center my-4" style="background: #212529;">
+        <div class="col-md-12 text-center my-4 p-4" style="background: #212529;">
             <h1 class="title text-white">Our Store</h1>
             <div class="hr-border"></div>
             <div class="gallery">
