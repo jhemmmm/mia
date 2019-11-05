@@ -27,6 +27,17 @@
                 <a class="list-group-item list-group-item-action" id="list-refund-list" data-toggle="list" href="#list-refund" role="tab" aria-controls="table">Refund List</a>
             </div>
         </div>
+        <script>
+        jQuery(document).ready(function ($) {
+            $('a.list-group-item').on('click', function (e) {
+                var href = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $('#nav-tabContent').offset().top - 200
+                }, 'slow');
+                e.preventDefault();
+            });
+        });
+        </script>
         <div class="col-12 col-md-10">
             <div class="card">
                 <div class="card-header">DASHBOARD</div>
@@ -78,43 +89,43 @@
 
                         <!--- Admin Dashboard !--->
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                            <div class="row justify-content-center">
-                                <div class="col-6 col-md-2">
+                            <div class="row">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_reservation'] }}</h1>
                                         <small>Reservation Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_registration'] }}</h1>
                                         <small>Registered Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_cancel_order'] }}</h1>
                                         <small>Total Cancel Order</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_items'] }}</h1>
                                         <small>Total Items</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_product'] }}</h1>
                                         <small>Total Product</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-1 p-0 m-0">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_table'] }}</h1>
                                         <small>Total Table</small>

@@ -4,7 +4,7 @@ html {
 
 body {
     font-family: "Open Sans", sans-serif;
-    background-color: #6c757d !important;
+    background-color: #d5d5d5 !important;
     color: #4c4c4c;
     min-height: 1200px;
 }
@@ -266,4 +266,54 @@ body {
     max-height: 200px;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+
+.MultiCarousel {
+    float: left;
+    overflow: hidden;
+    padding: 15px;
+    width: 100%;
+    position: relative;
+}
+
+.MultiCarousel .MultiCarousel-inner {
+    transition: 1s ease all;
+    float: left;
+}
+
+.MultiCarousel .MultiCarousel-inner .item {
+    float: left;
+}
+
+.MultiCarousel .MultiCarousel-inner .item>div {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    /*background: #f1f1f1;*/
+}
+
+.MultiCarousel .leftLst,
+.MultiCarousel .rightLst {
+    position: absolute;
+    border-radius: 50%;
+    /*top: calc(50% - 20px);*/
+    height: 100%;
+    width: 10%;
+    background: #00000070;
+    border: none;
+}
+
+.MultiCarousel .leftLst {
+    left: 0;
+}
+
+.MultiCarousel .rightLst {
+    right: 0;
+}
+
+.MultiCarousel .leftLst.over,
+.MultiCarousel .rightLst.over {
+    /*pointer-events: none;*/
+    /* background: #ccc;*/
 }
