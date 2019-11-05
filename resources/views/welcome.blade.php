@@ -578,7 +578,7 @@
         });
     </script>
 
-        <div class="col-md-12 text-center m-4" style="background: #dbdbdb;">
+        <div class="col-md-12 text-center m-4 p-2" style="background: #212529;">
             <h1 class="title text-white">Our Store</h1>
             <div class="hr-border"></div>
             <div class="gallery">
@@ -592,7 +592,7 @@
                     <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/69357304_657971261359381_4810972758659825664_n.jpg?_nc_cat=111&_nc_oc=AQmbRzFd4D1_-Tb8cHKFBRwaEbwP15rWuVw2LnJyvTkLtj6t6luW0icMS4Uo-fGEBAs&_nc_ht=scontent-sin2-2.xx&oh=02c7a05205ceaac76288680c41d69c49&oe=5E1A2CD5" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/69578824_657971324692708_2856518452909178880_o.jpg?_nc_cat=103&_nc_oc=AQmsvquQIYx7zwQry_JbdKtz1OStnGf_nYwOd0345T9fLJze8O-n0nGhkpsYvCxFOG4&_nc_ht=scontent-sin2-2.xx&oh=d38041fb2d920b4a9ef80ab53a62e0b7&oe=5E29CF0C" alt="Card image cap">
+                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/74155707_700251303798043_5459010566880231424_o.jpg?_nc_cat=105&_nc_oc=AQnZSIuWFDWPF0zoMmgS19BiZPLlRYoRo0Li8hBh1_2YOYk0YQUZGz-8_ZWsvNJSjlk&_nc_ht=scontent-sin2-2.xx&oh=f8b034dc33bc43902d9cd8c698994f48&oe=5E448764" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 2">
                     <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/70956511_674458289710678_2505804321304608768_o.jpg?_nc_cat=108&_nc_oc=AQnPNylvNZNsCGgeb3zkbGOIvXnM_jo-fkiMpzRqxv_FVkV5DCT2mth2snyb7CYiFys&_nc_ht=scontent-sin2-2.xx&oh=ed2582727b65cfe0f402f9d8a5a4f356&oe=5E235185" alt="Card image cap">
