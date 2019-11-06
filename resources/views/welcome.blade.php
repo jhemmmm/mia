@@ -38,7 +38,7 @@
                     Reservation</button>
             </div>
             <div class="col-12 col-md-4">
-                <button class="btn btn-primary btn-block">Contact US</button>
+                <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block">Contact US</button>
             </div>
         </div>
     </div>
@@ -50,6 +50,36 @@
             <h1 class="text-white title">Our Menu</h1>
             <div class="hr-border"></div>
         </div>
+         <!--- Contact Us Modal !--->
+        <div class="modal fade" id="contactUsModal" tabindex="-1" role="dialog" aria-labelledby="contactUsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactUsModalLabel">CONTACT US</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="subject-input" class="col-12 col-form-label">Subject</label>
+                            <div class="col-12">
+                                <input class="form-control" type="text" value="" id="subject-input">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="message-input" class="col-12 col-form-label">Body</label>
+                            <div class="col-12">
+                                <textarea id="message-input" rows="5" class="form-control" name="message"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--- End Contact Us Modal !--->
+
         <!-- Start Total People Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -583,22 +613,22 @@
             <div class="hr-border"></div>
             <div class="gallery">
                 <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/71389950_682058208950686_4382768629532327936_n.jpg?_nc_cat=101&_nc_oc=AQmKIaGKRE9l_wjI8iVbc8mOswJQ6tAxXUiJevVet9r2tU6gd9zzcBmSMv7Leiq43V8&_nc_ht=scontent-sin2-2.xx&oh=493d0826857edf02f9b9872dac544c69&oe=5E1E1088" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/69317229_656814938141680_2239329114148306944_o.jpg?_nc_cat=110&_nc_oc=AQn_B93jGiwwlNcFEZxF6hRNrE8xQ-WViaNrRYUrrD1iApEEA3LzSl409U-YPfJsk_w&_nc_ht=scontent-sin2-2.xx&oh=6792f3b321fbffd938be1ab53632f4bf&oe=5E2B4B58" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/69357304_657971261359381_4810972758659825664_n.jpg?_nc_cat=111&_nc_oc=AQmbRzFd4D1_-Tb8cHKFBRwaEbwP15rWuVw2LnJyvTkLtj6t6luW0icMS4Uo-fGEBAs&_nc_ht=scontent-sin2-2.xx&oh=02c7a05205ceaac76288680c41d69c49&oe=5E1A2CD5" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/74155707_700251303798043_5459010566880231424_o.jpg?_nc_cat=105&_nc_oc=AQnZSIuWFDWPF0zoMmgS19BiZPLlRYoRo0Li8hBh1_2YOYk0YQUZGz-8_ZWsvNJSjlk&_nc_ht=scontent-sin2-2.xx&oh=f8b034dc33bc43902d9cd8c698994f48&oe=5E448764" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/4.jpg') }}" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/70956511_674458289710678_2505804321304608768_o.jpg?_nc_cat=108&_nc_oc=AQnPNylvNZNsCGgeb3zkbGOIvXnM_jo-fkiMpzRqxv_FVkV5DCT2mth2snyb7CYiFys&_nc_ht=scontent-sin2-2.xx&oh=ed2582727b65cfe0f402f9d8a5a4f356&oe=5E235185" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/5.jpg') }}" alt="Card image cap">
                 </div>
                 <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/60396721_597851407371367_7576376787509182464_n.jpg?_nc_cat=110&_nc_oc=AQk75oCj_FJGln4nolddRy4-Y4kc001JZQymn6Jwsa1pNP0HEUugij1j_QbixZABCBY&_nc_ht=scontent-sin2-2.xx&oh=dead9a191288e41cb346e1b45c7e063a&oe=5E2FF135" alt="Card image cap">
+                    <img class="img-fluid" src="{{ asset('images/6.jpg') }}" alt="Card image cap">
                 </div>
             </div>
         </div>
