@@ -313,6 +313,7 @@
                         time: $("#date-input-order").val(),
                     }).done(function (data) {
                         $.notify(data.message, { position: "right bottom", className : data.status });
+                        $.notify('Please refresh the website.', { position: "right bottom", className : 'info' });
                     });
                 });
 
@@ -324,6 +325,7 @@
                         reason: reason,
                     }).done(function (data) {
                         $.notify(data.message, { position: "right bottom", className : data.status });
+                        $.notify('Please refresh the website.', { position: "right bottom", className : 'info' });
                     });
                 });
 
