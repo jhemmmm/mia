@@ -400,4 +400,14 @@ class AdminController extends Controller
 		'messaged' => 'Product has been successfully deleted',
 	  ]);
 	}
+
+	public function updateNotification(Request $request)
+	{
+		Book::where('notification_status', 1)->update(['notification_status' => 0]);
+
+		return response()->json([
+			'status' => 'success',
+			'messaged' => 'notification has been updated',
+	  ]);
+	}
 }

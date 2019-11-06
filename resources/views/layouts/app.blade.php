@@ -57,9 +57,19 @@
                         @else
 
                         @if(in_array(Auth::id(), config('app.admin_id')))
-                          <li class="nav-item">
-                              <a class="nav-link" href="/admin">Admin Panel</a>
-                          </li>
+                        
+                            @if(Helper::getNotificationCount() != 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin#list-reservation">
+                                        <div class="notification">
+                                        {{ Helper::getNotificationCount() }}
+                                        </div>
+                                    </a>     
+                                </li>
+                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Admin Panel</a>
+                            </li>
                         @endif
 
                             <li class="nav-item dropdown">

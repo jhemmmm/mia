@@ -1,8 +1,20 @@
 <?php
 namespace App;
 use Carbon\Carbon;
+use App\Book;
 
 class Helper{
+
+    public static function getNotificationCount()
+    {
+        return Book::where('notification_status', 1)->count();
+    }
+
+    public static function updateNotification()
+    {
+        return Book::where('notification_status', 1)->update(['notification_status' => 0]);
+    }
+
     public static function getStatus($time, $status)
     {
         if($status == 5)

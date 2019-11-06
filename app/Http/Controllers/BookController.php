@@ -58,6 +58,7 @@ class BookController extends Controller
         ]);
 
       $book->status = 5;
+      $book->reason = $request->reason;
       $book->save();
 
       return response()->json([

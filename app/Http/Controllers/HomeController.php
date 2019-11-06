@@ -5,6 +5,7 @@ use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Book;
+use App\User;
 use Auth;
 
 class HomeController extends Controller
@@ -35,11 +36,14 @@ class HomeController extends Controller
         $per_head = Category::where('type', 1)->get();
         $per_pack = Category::where('type', 0)->get();
 
+        $admin = User::find(1);
+
         return view('welcome', [
           'per_head' => $per_head,
           'per_pack' => $per_pack,
           'categories' => $categories,
           'books' => $books,
+          'admin' => $admin,
         ]);
     }
 

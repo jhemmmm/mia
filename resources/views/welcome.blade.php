@@ -17,7 +17,7 @@
     <div class="header-footer">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 text-center p-4">
+                <div class="col-12 text-center p-4" style="font-size: 20px;font-weight: bold;text-transform: uppercase;text-shadow: 0px 2px 2px rgb(61, 51, 30);">
                     <a href="#reservation"><i class="fas fa-chevron-down"></i> Book your table <i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -68,12 +68,13 @@
                         <div class="form-group row">
                             <label for="message-input" class="col-12 col-form-label">Body</label>
                             <div class="col-12">
-                                <textarea id="message-input" rows="5" class="form-control" name="message"></textarea>
+                                <textarea id="message-input" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">CLOSE</button>
+                        <button id="sendContact" type="button" class="btn btn-primary btn-block">SEND</button>
+                        <button type="button" class="btn btn-secondary btn-block m-0" data-dismiss="modal">CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -317,8 +318,10 @@
 
                 $("#cancel-order").click(function () {
                     var curThis = $(this);
+                    var reason = prompt("Your reason for canceling:", "");
                     $.post("/api/cancelOrder", {
                         id: curThis.data('id'),
+                        reason: reason,
                     }).done(function (data) {
                         $.notify(data.message, { position: "right bottom", className : data.status });
                     });
@@ -634,8 +637,22 @@
         </div>
     </div>
 </div>
-
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <script>
+$( document ).ready(function() {
+    $('#sendContact').click(function(){
+        Email.send({
+            Host : "smtp25.elasticemail.com",
+            Username : "warrockph24@gmail.com",
+            Password : "d8490dfe-be04-40cc-a361-1af431da7226",
+            To : "<?php echo $admin->email; ?>",
+            From : "warrockph24@gmail.com",
+            Subject : $('#subject-input').val(),
+            Body : $('#message-input').val()
+        }).then( message => $.notify(message, 'info'));
+    });
+});
+
     $(".navbar").removeClass("bg-white");
 
     $(window).scroll(function () {

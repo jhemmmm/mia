@@ -232,6 +232,19 @@ body {
     column-width: 33%;
 }
 
+.notification {
+    background: red;
+    border-radius: 50%;
+    width: 23px;
+    text-align: center !important;
+    display: inline-block;
+    color: #fff !important;
+}
+
+.btn {
+    box-shadow: 0px 0px 4px 0px #000;
+}
+
 .gallery .pics {
     -webkit-transition: all 350ms ease;
     transition: all 350ms ease;

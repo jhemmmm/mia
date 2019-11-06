@@ -53,5 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     //Users
     Route::post('/editUser', 'AdminController@editUser')->name('editUser');
     Route::post('/deleteUser', 'AdminController@deleteUser')->name('deleteUser');
+
+    //Notification
+    Route::post('/updateNotification', 'AdminController@updateNotification')->name('updateNotification');
   });
 });

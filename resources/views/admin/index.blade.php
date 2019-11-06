@@ -18,7 +18,9 @@
         <div class="col-12 col-md-2">
             <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-				<a class="list-group-item list-group-item-action" id="list-reservation-list" data-toggle="list" href="#list-reservation" role="tab" aria-controls="product">Reservations</a>
+				<a class="list-group-item list-group-item-action" id="list-reservation-list" data-toggle="list" href="#list-reservation" role="tab" aria-controls="product">
+                    Reservations @if(Helper::getNotificationCount() != 0)<div class="notification">{{ Helper::getNotificationCount() }}</div>@endif
+                </a>
                 <a class="list-group-item list-group-item-action" id="list-product-list" data-toggle="list" href="#list-product" role="tab" aria-controls="product">Products</a>
                 <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Product Inventory</a>
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
@@ -697,7 +699,7 @@
                         </div>
                         <!--- End Admin Sales Report !--->
 
-                         <!--- Admin Dashboard !--->
+                         <!--- Canceled Reservation !--->
                         <div class="tab-pane fade show" id="list-refund" role="tabpanel" aria-labelledby="list-refund-list">
                             <h3>Canceled Reservation</h3>
 							@if(count($admin_book['canceled_books']) > 0)
@@ -721,6 +723,11 @@
 												Name: <b>{{ $book->user->name }} </b></br>
 												Total Person: <b>{{ $book->total_person }}</b></br>
 												Table #: <b>{{ $book->table_id }} </b> </br></br>
+
+                                                <button title="Click to Show/Hide Content" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Reason</button>
+                                                <div id="spoiler" style="display:none">
+                                                    {{ $book->reason }}
+                                                </div>
 											</td>
 											<td>
 												@foreach($book->category as $category)
@@ -744,7 +751,7 @@
 							</div>
 							@endif
                         </div>
-                        <!--- End Admin Dashboard !--->                                                   
+                        <!--- End Canceled Reservation !--->                                                   
                     </div>
                 </div>
             </div>
@@ -763,6 +770,12 @@ function printDiv()
 }
 $(function(){
     $(document).ready(function () {
+        $.post("/admin/api/updateNotification", {
+            id: 'RemoveIt',
+        }).done(function (data) {
+            $.notify(data.message, data.status);
+        });
+
         $("a[id='reservation-delete']").click(function () {
             var targetId = $(this).data('target-id');
             if (confirm('Are you sure you want to delete this reservation?')) {
