@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row no-gutters justify-content-center">
         @if (count($errors) > 0)
         <div class="col-12">
             <div class="alert alert-danger">
@@ -92,42 +92,42 @@
                         <!--- Admin Dashboard !--->
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="row">
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_reservation'] }}</h1>
                                         <small>Reservation Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_registration'] }}</h1>
                                         <small>Registered Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_cancel_order'] }}</h1>
                                         <small>Total Cancel Order</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_items'] }}</h1>
                                         <small>Total Items</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_product'] }}</h1>
                                         <small>Total Product</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-1 p-0 m-0">
+                                <div class="col-6 col-md-2">
                                     <div class="text-center">
                                         <h1>{{ $dashboard['total_table'] }}</h1>
                                         <small>Total Table</small>
@@ -717,7 +717,7 @@
                                     </thead>
                                     <tbody>
 										@foreach($admin_book['canceled_books'] as $book)
-                                        <tr id="reservation-t-{{ $book->id }}">
+                                        <tr id="refund-t-{{ $book->id }}">
                                             <th scope="row">#{{ $book->id }}</th>
                                             <td>
 												Name: <b>{{ $book->user->name }} </b></br>
@@ -784,6 +784,7 @@ $(function(){
                 }).done(function (data) {
                     $("#reservation-t-" + targetId).fadeOut("slow");
                     $("#sales-t-" + targetId).fadeOut("slow");
+                    $("#refund-t-" + targetId).fadeOut("slow");
                     $.notify(data.message, data.status);
                 });
             }

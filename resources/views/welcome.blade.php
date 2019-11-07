@@ -320,13 +320,18 @@
                 $("#cancel-order").click(function () {
                     var curThis = $(this);
                     var reason = prompt("Your reason for canceling:", "");
-                    $.post("/api/cancelOrder", {
-                        id: curThis.data('id'),
-                        reason: reason,
-                    }).done(function (data) {
-                        $.notify(data.message, { position: "right bottom", className : data.status });
-                        $.notify('Please refresh the website.', { position: "right bottom", className : 'info' });
-                    });
+                    if(reason == null || reason == "")
+                    {
+                        $.notify('Unable to cancel your order, please input your reason.', { position: "right bottom", className : 'danger' });
+                    }else{
+                        $.post("/api/cancelOrder", {
+                            id: curThis.data('id'),
+                            reason: reason,
+                        }).done(function (data) {
+                            $.notify(data.message, { position: "right bottom", className : data.status });
+                            $.notify('Please refresh the website.', { position: "right bottom", className : 'info' });
+                        });
+                    }
                 });
 
                 $("div[id=manageTable]").click(function () {
@@ -462,27 +467,30 @@
                     if (categoryId.length == 0) {
                         alert("You have selected 0 order");
                     } else {
-                        $('#enableSelectTable').removeClass('d-none');
-                        $('#enableSelectTableBody').addClass('d-none');
-                        $.post("/api/saveBook", {
-                            tableId: tableId,
-                            date: date,
-                            totalPerson: totalPerson,
-                            categoryId: categoryId,
-                            categoryQuantity: categoryQuantity,
-                        }).done(function (data) {
-                            if (data.status == "login") {
-                                window.location.href = "/login";
-                                return;
-                            }else if(data.status == "fail"){
-                                $('#enableSelectTable').addClass('d-none');
-                                $('#enableSelectTableBody').removeClass('d-none');
-                                $.notify(data.message, { position: "right bottom", className : "info" });
-                                return;
-                            }
-                            $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
-                            window.location.href = data.redirect_url;
-                        });
+                        if(confirm("Note: Annyeonghaseyo! Ma'am/Sir. We will remind you that after completing your reservation, you will not able to change your orders. If you have any concern after completing your process, kindly contact us!. are you sure that you want to continue?"))
+                        {
+                            $('#enableSelectTable').removeClass('d-none');
+                            $('#enableSelectTableBody').addClass('d-none');
+                            $.post("/api/saveBook", {
+                                tableId: tableId,
+                                date: date,
+                                totalPerson: totalPerson,
+                                categoryId: categoryId,
+                                categoryQuantity: categoryQuantity,
+                            }).done(function (data) {
+                                if (data.status == "login") {
+                                    window.location.href = "/login";
+                                    return;
+                                }else if(data.status == "fail"){
+                                    $('#enableSelectTable').addClass('d-none');
+                                    $('#enableSelectTableBody').removeClass('d-none');
+                                    $.notify(data.message, { position: "right bottom", className : "info" });
+                                    return;
+                                }
+                                $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
+                                window.location.href = data.redirect_url;
+                            });
+                        }
                     }
                     //$('#selectPackageModal').modal('show');
                 });
