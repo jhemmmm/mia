@@ -64,9 +64,22 @@
                                         <div class="notification">
                                         {{ Helper::getNotificationCount() }}
                                         </div>
+                                        New Reservation
                                     </a>     
                                 </li>
                             @endif
+
+                            @if(Helper::getRefundNotificationCount() != 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin#list-refund">
+                                        <div class="notification">
+                                        {{ Helper::getRefundNotificationCount() }}
+                                        </div>
+                                        New Canceled
+                                    </a>     
+                                </li>
+                            @endif
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin">Admin Panel</a>
                             </li>

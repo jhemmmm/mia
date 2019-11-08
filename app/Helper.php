@@ -10,11 +10,11 @@ class Helper{
         return Book::where('notification_status', 1)->count();
     }
 
-    public static function updateNotification()
+    public static function getRefundNotificationCount()
     {
-        return Book::where('notification_status', 1)->update(['notification_status' => 0]);
+        return Book::where('notification_status', 2)->count();
     }
-
+    
     public static function getStatus($time, $status)
     {
         if($status == 5)

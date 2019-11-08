@@ -106,11 +106,12 @@ class AdminController extends Controller
 				'status' => 'error',
 				'message' => 'Invalid current password.',
 			]);
-
+		
+		
 		
 		$validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
             'address' => ['required', 'string', 'min:8'],
             'mobile' => ['required', 'digits:11'],
         ]);
@@ -403,7 +404,7 @@ class AdminController extends Controller
 
 	public function updateNotification(Request $request)
 	{
-		Book::where('notification_status', 1)->update(['notification_status' => 0]);
+		Book::where('notification_status', 1)->orWhere('notification_status', 2)->update(['notification_status' => 0]);
 
 		return response()->json([
 			'status' => 'success',

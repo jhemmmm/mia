@@ -26,7 +26,9 @@
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="table">Users</a>
                 <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Sales Report</a>
-                <a class="list-group-item list-group-item-action" id="list-refund-list" data-toggle="list" href="#list-refund" role="tab" aria-controls="table">Refund List</a>
+                <a class="list-group-item list-group-item-action" id="list-refund-list" data-toggle="list" href="#list-refund" role="tab" aria-controls="table">
+                    Refund List @if(Helper::getRefundNotificationCount() != 0)<div class="notification">{{ Helper::getRefundNotificationCount() }}</div>@endif
+                </a>
             </div>
         </div>
         <script>
