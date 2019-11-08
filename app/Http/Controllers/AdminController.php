@@ -199,7 +199,6 @@ class AdminController extends Controller
 				'message' => 'Unable to find the user',
 			]);
 		
-		Book::where('user_id', $user->id)->delete();
 		$user->delete();
 
 		return response()->json([
