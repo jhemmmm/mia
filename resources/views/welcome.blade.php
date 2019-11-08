@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <h1 class="text-white title">Our Menu</h1>
+            <h1 class="text-dark title">Our Menu</h1>
             <div class="hr-border"></div>
         </div>
          <!--- Contact Us Modal !--->
