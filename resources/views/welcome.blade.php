@@ -33,11 +33,11 @@
                     <h2>Your order confirmed in REAL-TIME!</h2>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 my-1">
                 <button data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary btn-block">Table
                     Reservation</button>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 my-1">
                 <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block">Contact US</button>
             </div>
         </div>
@@ -159,11 +159,11 @@
                                         </div>
                                         <div class="input-group number-spinner">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-primary" data-dir="dwn">-</button>
+                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
                                             </span>
                                             <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="50">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-primary" data-dir="up">+</button>
+                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
                                             </span>
                                         </div>
                                     </div>
@@ -176,11 +176,11 @@
                                         <label>{{ $category->price }}</label>
                                         <div class="input-group number-spinner">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-primary" data-dir="dwn">-</button>
+                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
                                             </span>
                                             <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="20">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-primary" data-dir="up">+</button>
+                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
                                             </span>
                                         </div>
                                     </div>
@@ -637,7 +637,7 @@
         });
     </script>
 
-        <div class="col-md-12 text-center my-4 p-4" style="background: #212529;">
+        <div class="col-md-12 text-center my-4 p-4" style="background: #212529;border-radius: 5px;box-shadow: 0px 2px 5px 1px #000;">
             <h1 class="title text-white">Our Store</h1>
             <div class="hr-border"></div>
             <div class="gallery">
