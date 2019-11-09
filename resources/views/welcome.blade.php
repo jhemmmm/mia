@@ -34,11 +34,11 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 my-1">
-                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary btn-block">Table
+                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary btn-block"><i class="fas fa-address-book"></i> Table
                     Reservation</button>
             </div>
             <div class="col-12 col-md-4 my-1">
-                <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block">Contact US</button>
+                <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block"><i class="fas fa-envelope"></i> Contact US</button>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <h1 class="text-dark title">Our Menu</h1>
+            <h1 class="text-dark title"><i class="fas fa-utensils"></i> Our Menu</h1>
             <div class="hr-border"></div>
         </div>
          <!--- Contact Us Modal !--->
@@ -73,8 +73,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="sendContact" type="button" class="btn btn-primary btn-block">SEND</button>
-                        <button type="button" class="btn btn-secondary btn-block m-0" data-dismiss="modal">CLOSE</button>
+                        <button id="sendContact" type="button" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> SEND</button>
+                        <button type="button" class="btn btn-secondary btn-block m-0" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -121,8 +121,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                        <button id="submitTotalPerson" type="button" class="btn btn-primary">CONTINUE</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
+                        <button id="submitTotalPerson" type="button" class="btn btn-primary"><i class="fas fa-caret-right"></i> CONTINUE</button>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="submitSelectTable" type="button" class="btn btn-primary btn-lg btn-block">CONTINUE</button>
+                        <button id="submitSelectTable" type="button" class="btn btn-primary btn-lg btn-block"><i class="fas fa-caret-right"></i> CONTINUE</button>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                         @endif
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -278,11 +278,11 @@
                         </div>
                     </div>
                     <div class="modal-footer" style="display: block !important">
-                        <button id="save-order" data-id="" type="button" class="btn btn-primary btn-block">SAVE
+                        <button id="save-order" data-id="" type="button" class="btn btn-primary btn-block"><i class="fas fa-save"></i> SAVE
                             ORDER</button>
-                        <button id="cancel-order" data-id="" type="button" class="btn btn-danger btn-block ml-0">CANCEL
+                        <button id="cancel-order" data-id="" type="button" class="btn btn-danger btn-block ml-0"><i class="fas fa-times"></i> CANCEL
                             ORDER</button>
-                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -638,7 +638,7 @@
     </script>
 
         <div class="col-md-12 text-center my-4 p-4" style="background: #212529;border-radius: 5px;box-shadow: 0px 2px 5px 1px #000;">
-            <h1 class="title text-white">Our Store</h1>
+            <h1 class="title text-white"><i class="fas fa-store"></i> Our Store</h1>
             <div class="hr-border"></div>
             <div class="gallery">
                 <div class="mb-3 pics animation all 2">

@@ -81,7 +81,7 @@
                             @endif
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">Admin Panel</a>
+                                <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> Admin Panel</a>
                             </li>
                         @endif
 
@@ -164,8 +164,8 @@
                         </div>
                     </div>
                     <div class="modal-footer" style="display: block !important">
-                        <button id="edit-user" type="submit" class="btn btn-primary btn-block">EDIT USER</button>
-                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal">CLOSE</button>
+                        <button id="edit-user" type="submit" class="btn btn-primary btn-block"><i class="fas fa-save"></i> EDIT USER</button>
+                        <button type="button" class="btn btn-secondary btn-block ml-0" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
                     </div>
                 </div>
             </div>
