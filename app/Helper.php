@@ -7,12 +7,12 @@ class Helper{
 
     public static function getNotificationCount()
     {
-        return Book::where('notification_status', 1)->count();
+        return Book::where('notification_status', 1)->where('status', 1)->count();
     }
 
     public static function getRefundNotificationCount()
     {
-        return Book::where('notification_status', 2)->count();
+        return Book::where('notification_status', 2)->where('status', 1)->count();
     }
     
     public static function getStatus($time, $status)
