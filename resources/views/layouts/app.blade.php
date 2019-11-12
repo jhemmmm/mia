@@ -22,7 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}?v=12" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}?v=14" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -116,6 +116,68 @@
             @yield('content')
 
         </main>
+
+        <footer class="kilimanjaro_area">
+        <!-- Top Footer Area Start -->
+        <div class="foo_top_header_one section_padding_100_70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="kilimanjaro_part">
+                            <h5>About Us</h5>
+                            <p>
+Korean Restaurant · Bar & Grill.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="kilimanjaro_part">
+                            <h5>Where to find us?</h5>
+                            <p>Magsaysay Avenue, Concepcion Pequeña, in front of Villa Caceres, Naga City <br>
+                                <a href="https://www.google.com/maps/place/Annyeong+Samgyupsal+NAGA/@13.6279941,123.1998478,15z/data=!4m2!3m1!1s0x0:0x4544e936de37b929?sa=X&ved=2ahUKEwi--djeluXlAhWbHXAKHUiLA30Q_BIwDHoECA4QCA">Google Maps</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="kilimanjaro_part">
+                            <h5>Social Links</h5>
+                            <ul class="kilimanjaro_social_links">
+                                <li><a href="https://www.facebook.com/Dawney-Animal-Clinic-Naga-469007536828530/"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                            </ul>
+
+                            <div class="kilimanjaro_single_contact_info mt-3">
+                                <h5 class="mb-2">Store Hours:</h5>
+                                <p class="mb-0">All Day</p>
+                                <p>10:00AM - 10:00PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="kilimanjaro_part">
+                            <h5>Quick Contact</h5>
+                            <div class="kilimanjaro_single_contact_info">
+                                <h5 class="mb-2">Phone:</h5>
+                                <p>+63910 022 4826</p>
+                            </div>
+                            <div class="kilimanjaro_single_contact_info">
+                                <h5 class="mb-2">Email:</h5>
+                                <p>support@kimanime.com<br> emergency@kimanime.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom Area Start -->
+        <div class=" kilimanjaro_bottom_header_one section_padding_50 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p>© All Rights Reserved by <a href="/">Annyeong Samgyupsal</a></p><a href="#">
+                    </a></div><a href="#">
+                </a></div><a href="#">
+            </a></div><a href="#">
+        </a></div><a href="#">
+    </a></footer>
 
          @guest
         @else
