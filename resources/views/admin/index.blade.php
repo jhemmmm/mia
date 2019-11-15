@@ -25,7 +25,7 @@
                 <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Product Inventory</a>
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="table">Users</a>
-                <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Sales Report</a>
+                <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Daily Sales Report</a>
                 <a class="list-group-item list-group-item-action" id="list-refund-list" data-toggle="list" href="#list-refund" role="tab" aria-controls="table">
                     Refund List @if(Helper::getRefundNotificationCount() != 0)<div class="notification">{{ Helper::getRefundNotificationCount() }}</div>@endif
                 </a>
@@ -287,6 +287,12 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group col-6">
+                                                                        <label>Type</label>
+                                                                        <select class="form-control" name="type">
+                                                                            <option value="0" {{ ($category->type == 0) ? 'selected' : ''}}>Per Pack</option>
+                                                                            <option value="1" {{ ($category->type == 1) ? 'selected' : ''}}>Per Head</option>
+                                                                        </select>
+                                                                        </br>
                                                                         <label>Image</label>
                                                                         {!! Form::file('image', array('class' => 'image
                                                                         form-control')) !!}
@@ -647,17 +653,8 @@
                                         <div id="DivIdToPrint" class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="text-left">
-                                                    <h5>Sales Report</h5>
+                                                    <h5>Daily Sales Report</h5>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group text-right">
-                                                    <select class="form-control" name="sort-sale">
-                                                        <option value="0">Today</option>
-                                                        <option value="1">Last Week</option>
-                                                        <option value="2">Last Month</option>
-                                                    </select>
-                                                </div> 
                                             </div>
                                             <div class="col-12"><hr></div>
                                             <?php $sale_total = 0; ?>

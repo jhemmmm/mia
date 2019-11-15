@@ -15,6 +15,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/menu', 'HomeController@menu')->name('menu');
+Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/success', 'HomeController@success')->name('success');
 
 //user

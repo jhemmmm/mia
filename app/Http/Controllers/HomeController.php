@@ -47,6 +47,51 @@ class HomeController extends Controller
         ]);
     }
 
+    public function menu()
+    {
+        $books = null;
+        if(Auth::id())
+          $books = Book::with(['category'])->where('status', '!=', 0)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+
+        $categories = Category::get();
+
+        $per_head = Category::where('type', 1)->get();
+        $per_pack = Category::where('type', 0)->get();
+
+        $admin = User::find(1);
+
+        return view('menu', [
+          'per_head' => $per_head,
+          'per_pack' => $per_pack,
+          'categories' => $categories,
+          'books' => $books,
+          'admin' => $admin,
+        ]);
+    }
+
+    public function about()
+    {
+        $books = null;
+        if(Auth::id())
+          $books = Book::with(['category'])->where('status', '!=', 0)->where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+
+        $categories = Category::get();
+
+        $per_head = Category::where('type', 1)->get();
+        $per_pack = Category::where('type', 0)->get();
+
+        $admin = User::find(1);
+
+        return view('about', [
+          'per_head' => $per_head,
+          'per_pack' => $per_pack,
+          'categories' => $categories,
+          'books' => $books,
+          'admin' => $admin,
+        ]);
+    }
+
+
     public function success(Request $request)
     {
       if(!$request->token)

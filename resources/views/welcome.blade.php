@@ -5,12 +5,15 @@
     <div class="header-container container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <i><h1>ANNYEONG SAMGYUPSAL <br>
-                    Online Reservation  System </i>
-                    <br>
+                <h1 class="text-white" style="font-size: 15px">welcome to</h1>
+                <h1>
+                    ANNYEONG SAMGYUPSAL <br>
+                    Online Reservation<br>
                 </h1>
-                <div class="hr-border"></div>
                <i><marquee> <p>ANNYEONGHASEYO..Welcome to ANNYEONG SAMGYUPSAL ONLINE RESERVATION...</p></marquee></i>
+            </div>
+             <div class="col-12 text-center">
+                <img style="width: 100%" src="/images/menu/menu.png">
             </div>
         </div>
     </div>
@@ -25,31 +28,45 @@
     </div>
 </div>
 
-<div id="reservation" class="content">
-    <div class="container">
-        <div class="order-block row justify-content-center">
-            <div class="col-12">
-                <div class="text-center">
-                    <h2>Your order confirmed in REAL-TIME!</h2>
+
+<div class="container py-5" >
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center" style="display: inline-grid;">
+            <i class="fas fa-utensils"></i>
+            <h1 class="text-dark title"> <span class="text-orange">Reserve</span> A Table Now</h1>
+        </div>
+        <div class="col-md-12 text-center">
+            <p>Your orders & reserviations are confirmed in REAM-TIME. We will always wecome and support your here.! </p>
+        </div>
+        <div class="col-12 col-md-4 my-1">
+            <button data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary btn-block btn-lg"><i class="fas fa-address-book"></i> Table Reservation</button>
+        </div>
+        <div class="col-12 col-md-4 my-1">
+            <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block btn-lg"><i class="fas fa-envelope"></i> Contact US</button>
+        </div>
+
+        <div class="col-12 py-4 text-center">
+            <p>We provide you with our best effor to make you feel safe, <br>
+                With our best and none unknown skills that our expert cheif or something, <br>
+                I really have nothing to say, I just want add a new cool information about nothing, please forgive us.</p>
+        </div>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6 py-5 text-right newfont" style="font-size: 30px; font-weight: bold">
+                    Check Out Our <br><span class="text-orange">delicious menu</span>
+                </div>
+
+                 <div class="col-6 py-5" style="overflow: hidden;">
+                    <a class="d-block" href="/menu">
+                        <img src="/images/menu-book.png" style="max-width: 225px;">
+                    </a>
                 </div>
             </div>
-            <div class="col-12 col-md-4 my-1">
-                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-secondary btn-block"><i class="fas fa-address-book"></i> Table
-                    Reservation</button>
-            </div>
-            <div class="col-12 col-md-4 my-1">
-                <button data-toggle="modal" data-target="#contactUsModal" class="btn btn-primary btn-block"><i class="fas fa-envelope"></i> Contact US</button>
-            </div>
         </div>
-    </div>
-</div>
+        
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12 text-center">
-            <h1 class="text-dark title"><i class="fas fa-utensils"></i> Our Menu</h1>
-            <div class="hr-border"></div>
-        </div>
+       
          <!--- Contact Us Modal !--->
         <div class="modal fade" id="contactUsModal" tabindex="-1" role="dialog" aria-labelledby="contactUsModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -513,154 +530,6 @@
             });
 
         </script>
-
-       
-<div class="container">
-	<div class="row">
-		<div class="MultiCarousel" data-items="2,3,3,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-                @foreach($categories as $category)
-                <div class="item">
-                    <div class="pad15">
-                        <img src="{{ asset($category->image) }}" style="width: 100%" />
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <button class="btn leftLst"><i style="font-size: 150%" class="text-white fas fa-chevron-circle-left"></i></button>
-            <button class="btn rightLst"><i style="font-size: 150%" class="text-white fas fa-chevron-circle-right"></i></button>
-        </div>
-	</div>
-    
-    <script>
-        $(document).ready(function () {
-        var itemsMainDiv = ('.MultiCarousel');
-        var itemsDiv = ('.MultiCarousel-inner');
-        var itemWidth = "";
-
-        $('.leftLst, .rightLst').click(function () {
-            var condition = $(this).hasClass("leftLst");
-            if (condition)
-                click(0, this);
-            else
-                click(1, this)
-        });
-
-        ResCarouselSize();
-
-        $(window).resize(function () {
-            ResCarouselSize();
-        });
-
-        //this function define the size of the items
-        function ResCarouselSize() {
-            var incno = 0;
-            var dataItems = ("data-items");
-            var itemClass = ('.item');
-            var id = 0;
-            var btnParentSb = '';
-            var itemsSplit = '';
-            var sampwidth = $(itemsMainDiv).width();
-            var bodyWidth = $('body').width();
-            $(itemsDiv).each(function () {
-                id = id + 1;
-                var itemNumbers = $(this).find(itemClass).length;
-                btnParentSb = $(this).parent().attr(dataItems);
-                itemsSplit = btnParentSb.split(',');
-                $(this).parent().attr("id", "MultiCarousel" + id);
-
-
-                if (bodyWidth >= 1200) {
-                    incno = itemsSplit[3];
-                    itemWidth = sampwidth / incno;
-                }
-                else if (bodyWidth >= 992) {
-                    incno = itemsSplit[2];
-                    itemWidth = sampwidth / incno;
-                }
-                else if (bodyWidth >= 768) {
-                    incno = itemsSplit[1];
-                    itemWidth = sampwidth / incno;
-                }
-                else {
-                    incno = itemsSplit[0];
-                    itemWidth = sampwidth / incno;
-                }
-                $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-                $(this).find(itemClass).each(function () {
-                    $(this).outerWidth(itemWidth);
-                });
-
-                $(".leftLst").addClass("over");
-                $(".rightLst").removeClass("over");
-
-            });
-        }
-
-        //this function used to move the items
-        function ResCarousel(e, el, s) {
-            var leftBtn = ('.leftLst');
-            var rightBtn = ('.rightLst');
-            var translateXval = '';
-            var divStyle = $(el + ' ' + itemsDiv).css('transform');
-            var values = divStyle.match(/-?[\d\.]+/g);
-            var xds = Math.abs(values[4]);
-            if (e == 0) {
-                translateXval = parseInt(xds) - parseInt(itemWidth * s);
-                $(el + ' ' + rightBtn).removeClass("over");
-
-                if (translateXval <= itemWidth / 2) {
-                    translateXval = 0;
-                    $(el + ' ' + leftBtn).addClass("over");
-                }
-            }
-            else if (e == 1) {
-                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-                translateXval = parseInt(xds) + parseInt(itemWidth * s);
-                $(el + ' ' + leftBtn).removeClass("over");
-
-                if (translateXval >= itemsCondition - itemWidth / 2) {
-                    translateXval = itemsCondition;
-                    $(el + ' ' + rightBtn).addClass("over");
-                }
-            }
-            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
-        }
-
-        //It is used to get some elements from btn
-        function click(ell, ee) {
-            var Parent = "#" + $(ee).parent().attr("id");
-            var slide = $(Parent).attr("data-slide");
-            ResCarousel(ell, Parent, slide);
-        }
-
-        });
-    </script>
-
-        <div class="col-md-12 text-center my-4 p-4" style="background: #212529;border-radius: 5px;box-shadow: 0px 2px 5px 1px #000;">
-            <h1 class="title text-white"><i class="fas fa-store"></i> Our Store</h1>
-            <div class="hr-border"></div>
-            <div class="gallery">
-                <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="{{ asset('images/1.jpg') }}" alt="Card image cap">
-                </div>
-                <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="{{ asset('images/2.jpg') }}" alt="Card image cap">
-                </div>
-                <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt="Card image cap">
-                </div>
-                <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="{{ asset('images/4.jpg') }}" alt="Card image cap">
-                </div>
-                <div class="mb-3 pics animation all 2">
-                    <img class="img-fluid" src="{{ asset('images/5.jpg') }}" alt="Card image cap">
-                </div>
-                <div class="mb-3 pics animation all 1">
-                    <img class="img-fluid" src="{{ asset('images/6.jpg') }}" alt="Card image cap">
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script src="https://smtpjs.com/v3/smtp.js"></script>
