@@ -22,7 +22,7 @@
                     Reservations @if(Helper::getNotificationCount() != 0)<div class="notification">{{ Helper::getNotificationCount() }}</div>@endif
                 </a>
                 <a class="list-group-item list-group-item-action" id="list-product-list" data-toggle="list" href="#list-product" role="tab" aria-controls="product">Products</a>
-                <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Product Inventory</a>
+                <a class="list-group-item list-group-item-action" id="list-items-list" data-toggle="list" href="#list-items" role="tab" aria-controls="items">Product Monitoring</a>
                 <a class="list-group-item list-group-item-action" id="list-table-list" data-toggle="list" href="#list-table" role="tab" aria-controls="table">Tables</a>
                 <a class="list-group-item list-group-item-action" id="list-user-list" data-toggle="list" href="#list-user" role="tab" aria-controls="table">Users</a>
                 <a class="list-group-item list-group-item-action" id="list-sale-list" data-toggle="list" href="#list-sale" role="tab" aria-controls="table">Daily Sales Report</a>
