@@ -94,43 +94,43 @@
                         <!--- Admin Dashboard !--->
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="row">
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-primary text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_reservation'] }}</h1>
                                         <small>Reservation Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-secondary text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_registration'] }}</h1>
                                         <small>Registered Today</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-success text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_cancel_order'] }}</h1>
                                         <small>Total Cancel Order</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-danger text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_items'] }}</h1>
                                         <small>Total Items</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-dark text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_product'] }}</h1>
                                         <small>Total Product</small>
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-2">
-                                    <div class="text-center">
+                                <div class="col-6 col-md-4 p-2">
+                                    <div class="bg-info text-white dashboard text-center p-4">
                                         <h1>{{ $dashboard['total_table'] }}</h1>
                                         <small>Total Table</small>
                                     </div>
