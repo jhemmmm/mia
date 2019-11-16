@@ -138,10 +138,10 @@ body {
 }
 
 #selectPerhead {
+    font-family: 'Amatic SC',
+        cursive !important;
     cursor: pointer;
-    border: 1px solid #c4c4c4;
-    background: #cfcfcf;
-    background: url(../images/x.png) #cfcfcf no-repeat;
+    background: url(../images/x.png) #fff no-repeat;
     background-position: top left;
     background-size: 35px;
     padding: 25px;
@@ -155,8 +155,8 @@ body {
 }
 
 .selectPackage {
-    border: 1px solid #c4c4c4;
-    background: #cfcfcf;
+    font-family: 'Amatic SC',
+        cursive !important;
     padding: 25px;
 }
 
@@ -167,7 +167,7 @@ body {
 .card,
 .modal-content {
     color: #3a3a3a;
-    background-color: #f2f1ef !important;
+    /*background-color: #f2f1ef !important;*/
 }
 
 .card-header,
@@ -180,7 +180,7 @@ body {
 }
 
 .modal-footer {
-    border-top: 1px solid #6d3800 !important;
+    border-top: 1px solid #ffeae7 !important;
 }
 
 .u-table {
@@ -993,4 +993,45 @@ ol li {
     filter: alpha(opacity=100);
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+.owl-theme .owl-nav [class*=owl-] {
+    background: #faa29473 !important;
+}
+
+.owl-prev,
+.owl-next {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    border: 0px solid #e3e1e1;
+}
+
+.owl-prev {
+    left: 0px;
+}
+
+.owl-next {
+    right: 0px;
+}
+
+.owl-prev i,
+.owl-next i {
+    transform: scale(3, 5);
+    color: #fa3615;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #b0b0b0;
+    border-color: #cbcbcb;
 }

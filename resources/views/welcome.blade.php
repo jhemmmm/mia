@@ -64,7 +64,6 @@
                 </div>
             </div>
         </div>
-        
 
        
          <!--- Contact Us Modal !--->
@@ -128,14 +127,6 @@
                                 <input class="form-control" type="datetime-local" value="" id="date-input" max="2021-01-01 00:00:00" min="2018-01-01 00:00:00">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6 text-center">
-                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="1" checked> PAX</label>
-                            </div>
-                            <div class="col-6 text-center">
-                                <label class="radio-inline"><input id="typeOrderValue" type="radio" name="type" value="0"> PACKAGE</label>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> CLOSE</button>
@@ -165,45 +156,60 @@
                                     </select>
                                 </div>
                             </div>
-                            <div id="selectPackageBody">
-                                <label>Select your order:</label>
-                                <div id="displayPerHead" class="row d-none">
-                                    @foreach($per_head as $category)
-                                    <div id="selectPerhead" class="col-6 col-md-3 text-center">
-                                        <div id="selectPerheadBtn">
-                                            <h1>{{ $category->name }}</h1>
-                                            <label>{{ $category->price }}</label>
-                                        </div>
-                                        <div class="input-group number-spinner">
-                                            <span class="input-group-btn">
-                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
-                                            </span>
-                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="50">
-                                            <span class="input-group-btn">
-                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
-                                            </span>
-                                        </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                   <button class="btn btn-primary btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">SHOW BLUEPRINT</button>
+                                   <div class="collapse" id="collapseExample">
+                                        <img class="img-fluid" src="{{ asset('images/blueprint.png') }}"/>
                                     </div>
-                                    @endforeach
                                 </div>
-                                <div id="displayPackage" class="row d-none">
-                                    @foreach($per_pack as $category)
-                                    <div class="selectPackage col-6 col-md-4 text-center">
-                                        <h1>{{ $category->name }}</h1>
-                                        <label>{{ $category->price }}</label>
-                                        <div class="input-group number-spinner">
-                                            <span class="input-group-btn">
-                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
-                                            </span>
-                                            <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="20">
-                                            <span class="input-group-btn">
-                                                <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
-                                            </span>
+                            </div>
+                            <div id="selectPackageBody">
+                               <label>Pax:</label>
+                               <div class="row">
+                                    <div class="owl-carousel owl-theme">
+                                         @foreach($per_head as $category)
+                                        <div id="selectPerhead" data-selector="{{ $category->id }}" class="text-center">
+                                            <div id="selectPerheadBtn">
+                                                <img class="rounded mx-auto d-block" src="{{ asset($category->image) }}"/>
+                                                <h3>{{ $category->name }}</h3>
+                                                <label style="font-size: 20px;font-weight: bold;" class="text-orange">₱{{ $category->price }}</label>
+                                            </div>
+                                            <div class="input-group number-spinner">
+                                                <span class="input-group-btn">
+                                                    <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
+                                                </span>
+                                                <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="20">
+                                                <span class="input-group-btn">
+                                                    <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
+                                                </span>
+                                            </div>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
+                                </div>
 
-
+                               
+                                <label>Package:</label>
+                                <div class="row">
+                                    <div class="owl-carousel owl-theme">
+                                         @foreach($per_pack as $category)
+                                        <div class="selectPackage text-center">
+                                            <img class="rounded mx-auto d-block" src="{{ asset($category->image) }}"/>
+                                            <h3>{{ $category->name }}</h3>
+                                            <label style="font-size: 20px;font-weight: bold;" class="text-orange">₱{{ $category->price }}</label>
+                                            <div class="input-group number-spinner">
+                                                <span class="input-group-btn">
+                                                    <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="dwn">-</button>
+                                                </span>
+                                                <input data-id="{{ $category->id }}" type="number" class="form-control text-center" value="0" min="0" max="20">
+                                                <span class="input-group-btn">
+                                                    <button style="border-radius: 0px;box-shadow: none;" class="btn btn-primary" data-dir="up">+</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
 
@@ -401,13 +407,11 @@
 
 
                 var totalPerson = 0;
-                var typeOrderValue = 0;
                 var date = 0;
                 $("#submitTotalPerson").click(function () {
                     var curThis = $(this);
                     curThis.attr("disabled", true);
                     totalPerson = $('#totalPersonValue').val();
-                    typeOrderValue = $("input[name='type']:checked").val();
                     date = $('#date-input').val();
                     
                     var curDate = new Date();
@@ -423,7 +427,6 @@
                     //add loading
                     $.post("/api/getAvailableTable", {
                         totalPerson: totalPerson,
-                        typeOrderValue: typeOrderValue,
                         time : date,
                     }).done(function (data) {
                         curThis.attr("disabled", false);
@@ -456,30 +459,37 @@
                         }
                         $('#exampleModal').modal('hide');
                         $('#selectTableModal').modal('show');
-                        if (typeOrderValue == 1) {
-                            $("#selectPerheadBtn").click();
-                            $('#displayPerHead').removeClass("d-none");
-                            $('#displayPackage').addClass("d-none");
-                        } else {
-                            $('#displayPerHead').addClass("d-none");
-                            $('#displayPackage').removeClass("d-none");
-                        }
+                        $('#selectPerheadBtn').click();
                     });
                 });
 
                 //check boxk
                 $('div[id=selectPerheadBtn]').click(function () {
                     var curThis = $(this).parent();
-                    //disable class
+                    var selectorId = curThis.data("selector");                  
+
+                    if(curThis.hasClass("active")){
+                        curThis.removeClass("active");
+                        curThis.find('.form-control').val(0)
+                        curThis.find('.form-control').attr('disabled', true);
+                        curThis.find('.btn').attr('disabled', true);
+                    }else{
+                        curThis.addClass("active");
+                        curThis.find('.form-control').val(totalPerson)
+                        curThis.find('.form-control').attr('disabled', false);
+                        curThis.find('.btn').attr('disabled', false);
+                    }
+                     //disable class
                     $('div[id=selectPerhead]').each(function (index, value) {
                         var curThis = $(this);
-                        curThis.removeClass("active");
-                        curThis.find('.form-control').val(0);
-                        curThis.find('.form-control').attr('min', totalPerson);
+                        if(selectorId != curThis.data("selector")){
+                            curThis.removeClass("active");
+                            curThis.find('.form-control').attr('disabled', true);
+                            curThis.find('.btn').attr('disabled', true);
+                            curThis.find('.form-control').val(0);
+                            curThis.find('.form-control').attr('min', totalPerson);
+                        }
                     });
-
-                    curThis.find('.form-control').val(totalPerson)
-                    curThis.addClass("active");
                 });
 
                 $('#submitSelectTable').click(function () {
@@ -521,7 +531,7 @@
                                     return;
                                 }
                                 $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
-                                window.location.href = data.redirect_url;
+                                //window.location.href = data.redirect_url;
                             });
                         }
                     }
@@ -535,6 +545,21 @@
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script>
 $( document ).ready(function() {
+     $('.owl-carousel').owlCarousel({
+        nav:true,
+        margin:10,
+        autoPlay: 1000,
+        navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+        responsive:{
+            0:{
+                items:2
+            },
+            800:{
+                items:3
+            },
+        }
+    });
+
     $('#sendContact').click(function(){
         Email.send({
             Host : "smtp25.elasticemail.com",
