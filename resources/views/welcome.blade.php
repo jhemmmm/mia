@@ -165,8 +165,10 @@
                                 </div>
                             </div>
                             <div id="selectPackageBody">
-                               <label>Pax:</label>
                                <div class="row">
+                                   <div class="col-12 newfont text-center" style="font-size: 21px;font-weight: bold;">
+                                        Pax
+                                    </div>
                                     <div class="owl-carousel owl-theme">
                                          @foreach($per_head as $category)
                                         <div id="selectPerhead" data-selector="{{ $category->id }}" class="text-center">
@@ -190,8 +192,10 @@
                                 </div>
 
                                
-                                <label>Package:</label>
                                 <div class="row">
+                                    <div class="col-12 newfont text-center" style="font-size: 21px;font-weight: bold;">
+                                        Package
+                                    </div>
                                     <div class="owl-carousel owl-theme">
                                          @foreach($per_pack as $category)
                                         <div class="selectPackage text-center">
