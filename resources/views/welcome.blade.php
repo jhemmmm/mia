@@ -243,7 +243,13 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        @if($books)
+                        @if(count($books) == 0)
+                        <div class="row">
+                            <div class="col-12 text-center p-2">
+                                <h1>No Reservation Found</h1>
+                            </div>
+                        </div>
+                        @else
                         @foreach($books as $book)
                         <div data-toggle="modal" data-target="#manageOrderedModal" data-id="{{ $book->id }}" id="manageTable" class="u-table row">
                             <div class="col-4">
