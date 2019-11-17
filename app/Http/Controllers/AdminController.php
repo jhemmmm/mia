@@ -24,7 +24,7 @@ class AdminController extends Controller
 	public function index()
 	{
 	  //Admin dashboard
-	  $total_reservation = Book::whereDate('created_at', Carbon::today())->count();
+	  $total_reservation = Book::where('status', 1)->whereDate('created_at', Carbon::today())->count();
 	  $total_registration = User::whereDate('created_at', Carbon::today())->count();
 	  $total_items = Item::count();
 	  $total_cancel_order = Book::where('status', 5)->count();
