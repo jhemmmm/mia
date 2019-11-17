@@ -497,6 +497,7 @@
                 });
 
                 $('#submitSelectTable').click(function () {
+                    var curThisMain = $(this);
                     var tableId = $('#selectTableAvailable').val();
                     var categoryId = [];
                     var categoryQuantity = [];
@@ -535,7 +536,8 @@
                                     return;
                                 }
                                 $("#selectTableBody").html('<div class="text-center text-success"><i style="font-size: 150px" class="far fa-check-circle"></i><h1>Redirecting you to PayPal</h1></div>');
-                                //window.location.href = data.redirect_url;
+                                curThisMain.attr("disabled", true);
+                                window.location.href = data.redirect_url;
                             });
                         }
                     }
