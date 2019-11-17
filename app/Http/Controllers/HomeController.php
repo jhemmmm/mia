@@ -102,6 +102,7 @@ class HomeController extends Controller
         return abort(404);
       
       $book->status = 1;
+      $book->notification_status = 1;
       $book->save();
 
       $total = 0;

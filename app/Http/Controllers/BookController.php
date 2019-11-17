@@ -96,7 +96,7 @@ class BookController extends Controller
         //Carbon::parse(strtotime($request->time))
         $availableTables[] = $table->id;
         
-        $books = Book::where('table_id', $table->id)->get();
+        $books = Book::where('table_id', $table->id)->where('status', 1)->get();
         foreach($books as $book ){
           if($book->time->format('Y-m-d') == $time->format('Y-m-d')){
             if((int)$book->time->format('H') == (int)$time->format('H') 
